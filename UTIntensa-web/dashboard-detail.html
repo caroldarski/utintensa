@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>UTIntensa</title>
+		
+		<!-- metas -->
+		<meta charset="utf-8">
+		<meta name="author" content="http://themeforest.net/user/CreativeWS/portfolio">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+		<!--/ metas -->
+		
+		<!-- styles -->
+		<link rel="stylesheet" type="text/css" href="css/layerslider.css">
+		<link rel="stylesheet" type="text/css" href="css/fullwidth/skin.css">
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+		<link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link rel="stylesheet" type="text/css" href="css/color-blue.css">
+		
+		<!--/ styles -->
+		
+		<!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
+	</head>
+	
+	<body>
+		<div class="page">
+
+			<!-- page header -->
+			<header class="page-header main-page sticky">
+				<div class="sticky-wrapp">
+					<div class="sticky-container">
+						<!-- logo -->
+						<section id="logo" class="logo">
+							<div>
+								<a href="index.html"><img src="img/blue/utintensa.png" alt="Clinico"></a>
+							</div>
+						</section>
+						<!--/ logo -->
+						
+						<!-- main nav -->
+						<nav class="main-nav">
+							<ul>
+								<li>
+									<a href="news-default.html"><i class="fa fa-plus"></i>Login</a>
+									<ul>
+										<li class="text">
+											<fieldset>
+												<legend>Login: </legend>
+												
+												<input type="text" placeholder="Usuário" id="usuario" name="usuario" class="ui-autocomplete-input" autocomplete="on">
+												</br>
+												<input type="text" placeholder="Senha" id="senha" name="senha" class="ui-autocomplete-input" autocomplete="off">
+												<div>
+													<button id="wpb_button" type="button">Entrar</button>
+												</div>
+											</fieldset>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+									<a href="index.html" class="active"><i class="fa fa-plus"></i>Inicio</a>
+									<ul>
+										<li>
+											<a href="index.html" class="active">Medical Style</a>
+											<ul>
+												<li class="text">
+													<h2>Hospital Protótipo</h2>
+													<hr>
+													Av. Unisinos, 123<br>São Leopoldo, CEP 92022-718
+													<hr>
+													(51) 8522-6685<br>atendimento@utintesa.com.br
+													<a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="services.html"><i class="fa fa-plus"></i>Serviços</a>
+								</li>
+								<li>
+									<a href="timetable-week.html"><i class="fa fa-plus"></i>Calendário</a>
+									<ul>
+										<li><a href="timetable-month.html">Mês</a></li>
+										<li><a href="timetable-week.html">Semana</a></li>
+										<li><a href="timetable-list.html">Lista</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="contacts.html"><i class="fa fa-plus"></i>Contato</a>
+								</li>
+							</ul>
+						</nav>
+						<!--/ main nav -->
+						
+						<!-- mobile nav -->
+						<nav id="mobile-main-nav" class="mobile-main-nav">
+							<i class="fa fa-bars"></i><a href="#" class="opener">Navigation</a>
+							<ul>
+								<li>
+									<a href="news-default.html"><i class="fa fa-plus"></i>Login</a>
+									<ul>
+										<li class="text">
+											<fieldset>
+												<legend>Login: </legend>
+												
+												<input type="text" placeholder="Usuário" id="usuario" name="usuario" class="ui-autocomplete-input" autocomplete="on">
+												</br>
+												<input type="text" placeholder="Senha" id="senha" name="senha" class="ui-autocomplete-input" autocomplete="off">
+												<div>
+													<button id="wpb_button" type="button">Entrar</button>
+												</div>
+											</fieldset>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+									<a href="index.html" class="active"><i class="fa fa-plus"></i>Inicio</a>
+									<ul>
+										<li>
+											<a href="index.html" class="active">Medical Style</a>
+											<ul>
+												<li class="text">
+													<h2>Hospital Protótipo</h2>
+													<hr>
+													Av. Unisinos, 123<br>São Leopoldo, CEP 92022-718
+													<hr>
+													(51) 8522-6685<br>atendimento@utintesa.com.br
+													<a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="services.html"><i class="fa fa-plus"></i>Serviços</a>
+								</li>
+								<li>
+									<a href="timetable-week.html"><i class="fa fa-plus"></i>Calendário</a>
+									<ul>
+										<li><a href="timetable-month.html">Mês</a></li>
+										<li><a href="timetable-week.html">Semana</a></li>
+										<li><a href="timetable-list.html">Lista</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="contacts.html"><i class="fa fa-plus"></i>Contato</a>
+								</li>
+							</ul>
+						</nav>
+						<!--/ mobile nav -->
+					</div>
+				</div>
+			</header>
+			<!--/ page header -->
+	
+			<!-- quick search -->
+			<form id="quick-search" class="quick-search">
+				<fieldset>
+					<legend>Quick Search:</legend>
+					
+					<input type="text" placeholder="Search by name" id="docname" name="docname" class="ui-autocomplete-input" autocomplete="off">
+					
+					<select>
+						<option value="0">Speciality</option>
+						<option value="1">Ophthomologist</option>
+						<option value="2">Dermatologist</option>
+						<option value="3">Neorologist</option>
+						<option value="4">Surgeon</option>
+					</select>
+					
+					<select>
+						<option value="0">Locations</option>
+						<option value="1">Primary Health Care</option>
+						<option value="2">Gynaecological Clinic</option>
+						<option value="3">Diagnosis With Precise</option>
+						<option value="4">Cardiac Clinic</option>
+						<option value="5">General Surgery</option>
+					</select>
+					
+					<button type="submit">Search</button>
+					<div class="switcher">
+						<button id="quick-search-switcher" type="button">Ache um médico</button>
+					</div>
+				</fieldset>				
+			</form>
+			<!--/ quick search -->
+
+			<!-- page title -->
+			<section class="page-title">
+				<div class="grid-row clearfix">
+					<h1>Dados - Ana dos Santos</h1>						
+					<nav class="bread-crumbs">
+						<a href="index.html">Início</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;
+						<a href="features-accordion.html">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;
+						<a href="#">Detalhe Paciente</a>
+					</nav>
+				</div>
+			</section>
+			
+			<!--/ page title -->
+
+			<main class="page-content">
+				<div class="grid-row">
+					
+					<div class="grid-col grid-col-9">
+						<div class="grid-col grid-col-3">
+							<img src="pictures/ana-profile.png" alt="Ana"></img>
+						</div>
+						
+						<div class="grid-col grid-col-6">
+							</br>
+							</br>
+							<div class="widget-title-baby">Idade: 2 Semanas</div>
+							<div class="widget-title-baby">Setor: UTI Maternidade</div>			
+							<div class="widget-title-baby">Estado:<a class="widget-title-baby-estavel"> Estável</class></div>
+						</div>
+						
+						</br>
+						
+						<!-- chart graph -->
+						<div class="wpb_row vc_row-fluid">
+							<div class="widget-title">Média de Temperatura (nas ultimas 24h)</div>
+								<div class="chart-graph" data-coords="12/36;13/36.4;14/36.5;15/37;16/38.4;17/37.5;18/37.2" data-color="#008fd5"></div>
+						</div>
+						<!--/ chart graph -->
+						
+						<!-- chart graph -->
+						<div class="wpb_row vc_row-fluid">
+							<div class="widget-title">Média de Batimentos (nas ultimas 24h)</div>
+								<div class="chart-graph" data-coords="12/35;13/37;14/40;15/38;16/55;17/44;18/42" data-color="#008fd5"></div>
+						</div>
+						<!--/ chart graph -->
+
+					</div>
+					<div class="grid-col grid-col-3">
+
+						<!-- site search -->
+						<form action="#" class="widget widget-site-search">
+							<input type="text" placeholder="Search the site">
+							<button type="submit" class="button">GO</button>
+						</form>
+						<!--/ site search -->
+
+						<!-- categories -->
+						<section class="widget widget-sevices">
+							<ul>
+								<li><i class="fa fa-bookmark"></i><a href="features-team.html">Alertas</a></li>
+								<li><i class="fa fa-bookmark"></i><a href="features-columns.html">Calendário do Paciente</a></li>
+								<li><i class="fa fa-bookmark"></i><a href="features-video.html">Procedimentos</a></li>
+							</ul>
+						</section>
+						<!--/ categories -->
+
+					</div>
+				</div>
+			</main>
+
+			<!-- page footer -->
+			<footer class="page-footer">
+				<a href="#" id="top-link" class="top-link"><i class="fa fa-angle-double-up"></i></a>
+				
+				<div class="grid-row">
+					<div class="grid-col grid-col-3">
+						<!-- last news -->
+						<section class="widget-alt last-news">
+							<div class="widget-icon"></div>
+							<div class="widget-title">UTIntensa</div>
+							<ul>
+								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin justo non odio molestie, sed venenatis elit, consectetur adipiscing.</li>
+								<li>Donec quis condimentum leo, et congue dolor. Integer auctor facilisis odio. Duis vitae nibh tristique, consectetur lacus a, facilisis rutrum enim.</li>
+								<li>Cras fermentum interdum dapibus. Maecenas imperdiet, consectetur adipiscing magna nec odio cursus, vitae consequat ante.</li>
+							</ul>
+						</section>
+						<!--/ last news -->
+					</div>
+				
+					<div class="grid-col grid-col-3">
+						<!-- location -->
+						<section class="widget-alt location">
+							<div class="widget-icon"></div>
+							<div class="widget-title">Localização</div>
+							<address>Av. Unisinos, 123 CEP 92022-718</address>
+							<ul>
+								<li><i class="fa fa-phone"></i>(51) 8522-6685</li>
+								<li><i class="fa fa-at">@</i>atendimento@utintesa.com.br</li>
+								<li><i class="fa fa-skype"></i>UTIntensa</li>
+							</ul>
+							<nav>
+								<a href="#" class="fa fa-twitter"></a>
+								<a href="#" class="fa fa-facebook"></a>
+								<a href="#" class="fa fa-instagram"></a>
+							</nav>
+						</section>
+						<!--/ location -->	
+					</div>
+					<div class="grid-col grid-col-3">
+						<!-- last news -->
+						<section class="widget-alt recent-posts">
+							<div class="widget-icon"></div>
+							<div class="widget-title">Especialidades</div>
+							<ul>
+								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin justo non odio molestie, sed venenatis elit, consectetur adipiscing.</li>
+								<li>Donec quis condimentum leo, et congue dolor. Integer auctor facilisis odio. Duis vitae nibh tristique, consectetur lacus a, facilisis rutrum enim.</li>
+								<li>Cras fermentum interdum dapibus. Maecenas imperdiet, consectetur adipiscing magna nec odio cursus, vitae consequat ante.</li>
+							</ul>
+						</section>
+						<!--/ last news -->
+					</div>	
+					<div class="grid-col grid-col-3">
+						<!-- work time -->
+						<section class="widget-alt work-time">
+							<div class="widget-icon"></div>
+							<dl>
+								<dt>Seg</dt>
+								<dd>08:00 - 9:00</dd>
+								<dt>Ter</dt>
+								<dd>10:00 - 11:00</dd>
+								<dt>Qua</dt>
+								<dd>13:00 - 14:00</dd>
+								<dt>Qui</dt>
+								<dd>14:00 - 15:00</dd>
+								<dt>Sexta</dt>
+								<dd>18:00 - 19:00</dd>
+								<dt>Sáb</dt>
+								<dd>14:00 - 15:00</dd>
+								<dt>Dom</dt>
+								<dd>14:00 - 16:00</dd>
+							</dl>
+							<a href="#" class="button">Marque sua visita</a>
+						</section>
+						<!--/ work time -->							
+					</div>
+					
+				</div>
+			</footer>
+			<!--/ page footer -->
+
+		</div>
+		
+		<!-- scripts -->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.migrate.min.js"></script>
+		<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+		<script type="text/javascript" src="js/jquery.isotope.min.js"></script>
+		<script type="text/javascript" src="js/jquery.fancybox.pack.js"></script>
+		<script type="text/javascript" src="js/jquery.fancybox-media.js"></script>
+		<script type="text/javascript" src="js/jquery.flot.js"></script>
+		<script type="text/javascript" src="js/jquery.flot.pie.js"></script>
+		<script type="text/javascript" src="js/jquery.flot.categories.js"></script>
+		<script type="text/javascript" src="js/greensock.js"></script>
+		<script type="text/javascript" src="js/layerslider.transitions.js"></script>
+		<script type="text/javascript" src="js/layerslider.kreaturamedia.jquery.js"></script>
+
+	<!-- Superscrollorama -->		
+		<script type="text/javascript" src="js/jquery.superscrollorama.js"></script>
+		<script type="text/javascript" src="js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="js/TimelineMax.min.js"></script>
+	<!--/ Superscrollorama -->
+	
+		<script type="text/javascript" src="js/jquery.ui.core.min.js"></script>
+		<script type="text/javascript" src="js/jquery.ui.widget.min.js"></script>
+		<script type="text/javascript" src="js/jquery.ui.tabs.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-tabs-rotate.js"></script>
+		<script type="text/javascript" src="js/jquery.ui.accordion.min.js"></script>
+		<script type="text/javascript" src="js/jquery.tweet.js"></script>
+	<!-- EASYPIECHART -->
+		<script type="text/javascript" src="js/jquery.easypiechart.js"></script>
+	<!--/ EASYPIECHART -->
+		<script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
+		<script type="text/javascript" src="js/scripts.js"></script>
+		<!--/ scripts -->
+		
+	</body>
+</html>
