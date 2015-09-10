@@ -1,8 +1,8 @@
 from UTIntensa import app
 from flask import render_template, request, flash, session, url_for, redirect
-from forms import ContactForm, SigninForm
+from forms import ContactForm, SigninForm, ProfileForm
 from flask.ext.mail import Message, Mail
-from models import db, User
+from models import db, User, Profile
  
 mail = Mail()
 
@@ -42,8 +42,23 @@ def contact():
   elif request.method == 'GET':
     return render_template('contact.html', form=form) 
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 def profile():
+  form = ProfileForm()
+  
+  if 'email' not in session:
+    return redirect(url_for('signin'))
+ 
+  user = User.query.filter_by(email = session['email']).first()
+  profile = Profile.query.filter_by(uid = user.uid).first()
+  
+  if user is None:
+    return redirect(url_for('signin'))
+  else:
+    return render_template('profile.html', form=form)
+	
+@app.route('/dashboard')
+def dashboard():
  
   if 'email' not in session:
     return redirect(url_for('signin'))
@@ -53,7 +68,7 @@ def profile():
   if user is None:
     return redirect(url_for('signin'))
   else:
-    return render_template('profile.html')
+    return render_template('dashboard.html')
 	
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():

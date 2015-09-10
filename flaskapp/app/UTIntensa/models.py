@@ -22,3 +22,25 @@ class User(db.Model):
    
   def check_password(self, password):
     return check_password_hash(self.pwdhash, password)
+	
+class Profile(db.Model):
+  __tablename__ = 'profile'
+  uid = db.Column(db.Integer, primary_key = True)
+  birthdate = db.Column(db.DateTime)
+  cpf = db.Column(db.String(11))
+  rg = db.Column(db.String(10))
+  address = db.Column(db.String(60))
+  number = db.Column(db.Integer)
+  additionalInformation = db.Column(db.String(20))
+  district = db.Column(db.String(20))
+  region = db.Column(db.String(2))
+  country = db.Column(db.String(2))
+  telephone = db.Column(db.String(20))
+  cellphone = db.Column(db.String(20))
+  profileType = db.Column(db.String(1))
+  role = db.Column(db.String(20))
+  bloodType = db.Column(db.String(3))
+  
+  def __init__(self, uid):
+    self.uid = uid.title()
+	 
