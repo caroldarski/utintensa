@@ -35,7 +35,7 @@
 						<!-- logo -->
 						<section id="logo" class="logo">
 							<div>
-								<a href="index.html"><img src="img/blue/logo.png" width="190" height="50" alt="Clinico"></a>
+								<a href="index.html"><img src="static/img/blue/utintensa.png" alt="Clinico"></a>
 							</div>
 						</section>
 						<!--/ logo -->
@@ -276,21 +276,22 @@
 							<div class="widget-title">Meu Perfil</div>	
 							<div class="wpb_text_column wpb_content_element">
 								<div class="wpb_wrapper">			
-									<img src="pic/our-phylosophy.jpg" width="260" height="246" alt="" class="alignleft">
+									<img src="static/pic/our-phylosophy.jpg" width="260" height="246" alt="" class="alignleft">
 								   <div class="grid-col grid-col-4">
 									<h2>Login</h2>
 									
-									<form class="text" action="{{ url_for('signin') }}" method=post>
+									<form class="text" action="{{ url_for('profile') }}" method=post>
 										{{ form.hidden_tag() }}
 										
+										{{ form.uName.label }}
 										{{ form.profileType.label }}
 										{{ form.role.label }}
 										 
-										{{ form.CPF.label }}
-										{{ form.CPF }}
+										{{ form.cpf.label }}
+										{{ form.cpf }}
 										 
-										{{ form.RG.label }}
-										{{ form.RG }}
+										{{ form.rg.label }}
+										{{ form.rg }}
 										
 										{{ form.birthDate.label }}
 										{{ form.birthDate }}
