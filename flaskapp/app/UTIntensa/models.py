@@ -6,14 +6,10 @@ db = SQLAlchemy()
 class User(db.Model):
 	__tablename__ = 'users'
 	uid = db.Column(db.Integer, primary_key = True)
-	firstname = db.Column(db.String(100))
-	lastname = db.Column(db.String(100))
 	email = db.Column(db.String(120), unique=True)
 	pwdhash = db.Column(db.String(54))
    
-	def __init__(self, firstname, lastname, email, password):
-		self.firstname = firstname.title()
-		self.lastname = lastname.title()
+	def __init__(self, email, password):
 		self.email = email.lower()
 		self.set_password(password)
      
@@ -22,10 +18,12 @@ class User(db.Model):
    
 	def check_password(self, password):
 		return check_password_hash(self.pwdhash, password)
-	
+
 class Profile(db.Model):
 	__tablename__ = 'profile'
 	uid = db.Column(db.Integer, primary_key = True)
+	firstname = db.Column(db.String(50))
+	lastname = db.Column(db.String(80))
 	birthdate = db.Column(db.DateTime)
 	cpf = db.Column(db.String(11))
 	rg = db.Column(db.String(10))
@@ -41,9 +39,12 @@ class Profile(db.Model):
 	role = db.Column(db.String(20))
 	bloodType = db.Column(db.String(3))
 
-	def __init__(self, id, cpf, rg, address, number, additionalInformation, district, region, country, telephone, cellphone, profileType, role, bloodType):
+	def __init__(self, id, firstname, lastname, cpf, birthdate, rg, address, number, additionalInformation, district, region, country, telephone, cellphone, profileType, role, bloodType):
 		self.id = id
+		self.firstname = firstname
+		self.lastname = lastname
 		self.cpf = cpf
+		self.birthdate = birthdate
 		self.rg = rg
 		self.address = address
 		self.number = number
@@ -72,3 +73,9 @@ class Profile(db.Model):
 		self.profileType = profileType
 		self.role = role
 		self.bloodType = bloodType
+
+class Patients(Profile):
+
+	def __init__(self, id, firstname, lastname, cpf, rg, address, number, additionalInformation, district, region, country, telephone, cellphone, profileType, bloodType):
+		role = "Paciente"
+		Profile.__init__(self, id, firstname, lastname, cpf, rg, address, number, additionalInformation, district, region, country, telephone, cellphone, profileType, role, bloodType)

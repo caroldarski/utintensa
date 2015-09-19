@@ -79,54 +79,99 @@
 			</header>
 			<!--/ page header -->
 
+<!--/ HEADERS -->
+
 			<!-- page title -->
 			<section class="page-title">
 				<div class="grid-row clearfix">
-					<h1>404 page</h1>
+					<h1>Perfil</h1>
+					
+					<nav class="bread-crumbs">
+						<a href="index.html">Início</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;
+						<a href="#">Cadastro de Funcionários</a>
+					</nav>
 				</div>
 			</section>
 			<!--/ page title -->
 
-			<!-- page content -->
-			<main class="page-content vc_responsive">
+			<main class="page-content">
 				<div class="grid-row">
-					<div id="header-404">
-						<a>
-							Ah não! É um
-						</a>
-					</div>
-					<div id="block-404">
-						<div id="block-404-substrate">
-						</div>
-						<div id="block-404-icon">
-						</div>
-					</div>
-					<div id="text-404">
-						<div class="wpb_row vc_row-fluid">
-						<!-- Full width column -->	
-									<div class="vc_span12 wpb_column column_container">
-										<div class="wpb_wrapper">
-											<div class="wpb_text_column wpb_content_element">
-												<div class="wpb_wrapper">
-												<h1>
-												Parece que a página que você está procurando não existe :(
-												</h1>
-												Verifique se o endereço está correto
-												</div>
-											</div>
-										</div>
-									</div>
-						<!--/ Full width column -->	
-						</div>
-					</div>
-					<div id="button-404">
-						<a class="wpb_button wpb_wpb_button wpb_btn-arrow-right wpb_regularsize" href="index.html">Volte para a página inicial</a>
-					</div>
-				</div>
-			</main>
-			<!-- page content -->
+					<div class="grid-col grid-col-5">
+						<!-- philosophy -->
+						<section class="widget">	
+							<div class="widget-title">Cadastro de Funcionários</div>
+							<div class="wpb_text_column wpb_content_element">
+								<div class="wpb_wrapper">			
+									<img src="static/pic/our-phylosophy.jpg" width="260" height="246" alt="" class="alignleft">
+								   <div class="grid-col grid-col-4">
+									<h2>Login</h2>
+									
+									<form class="text" action="{{ url_for('createPerson') }}" method=post>
+										{{ form.hidden_tag() }}
 
-			<!-- page footer -->
+										{{ form.firstname.label }}
+										{{ form.firstname }}
+
+										{{ form.lastname.label}}
+										{{ form.lastname }}
+
+										{{ form.cpf.label }}
+										{{ form.cpf }}
+										 
+										{{ form.rg.label }}
+										{{ form.rg }}
+										
+										{{ form.birthDate.label }}
+										{{ form.birthDate }}
+										
+										{{ form.address.label }}
+										{{ form.address }}
+										
+										{{ form.number.label }}
+										{{ form.number }}
+										
+										{{ form.additionalInformation.label }}
+										{{ form.additionalInformation }}
+										 
+										{{ form.district.label }}
+										{{ form.district }}
+										
+										{{ form.region.label }}
+										{{ form.region }}
+										
+										{{ form.country.label }}
+										{{ form.country }}
+																		
+										{{ form.telephone.label }}
+										{{ form.telephone }}
+										
+										{{ form.cellphone.label }}
+										{{ form.cellphone }}
+										
+										{{ form.bloodType.label }}
+										{{ form.bloodType }}
+
+										{{ form.role.label }}
+										{{ form.role }}
+										<br>
+										 <div class="wpb_button wpb_wpb_button wpb_btn-arrow-right wpb_regularsize float-right">
+											{{ form.submit }}
+										</div>
+									</form>
+								</div>
+								</div>
+							</div>
+						</section>
+						<!--/ philosophy -->
+					</div>
+					<hr>
+				</div>
+			</div>
+			</main>
+
+
+
+<!-- FOOTERS -->
 			<footer class="page-footer">
 				<a href="#" id="top-link" class="top-link"><i class="fa fa-angle-double-up"></i></a>
 				
@@ -135,7 +180,7 @@
 						<!-- last news -->
 						<section class="widget-alt last-news">
 							<div class="widget-icon"></div>
-							<div class="widget-title">Clinico</div>
+							<div class="widget-title">UTIntensa</div>
 							<ul>
 								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin justo non odio molestie, sed venenatis elit, consectetur adipiscing.</li>
 								<li>Donec quis condimentum leo, et congue dolor. Integer auctor facilisis odio. Duis vitae nibh tristique, consectetur lacus a, facilisis rutrum enim.</li>
@@ -144,17 +189,17 @@
 						</section>
 						<!--/ last news -->
 					</div>
-					
+				
 					<div class="grid-col grid-col-3">
 						<!-- location -->
 						<section class="widget-alt location">
 							<div class="widget-icon"></div>
-							<div class="widget-title">Location</div>
-							<address>Address will be appear here, some details here City Name, Country.</address>
+							<div class="widget-title">Localização</div>
+							<address>Av. Unisinos, 123 CEP 92022-718</address>
 							<ul>
-								<li><i class="fa fa-phone"></i>(907) 555-55555</li>
-								<li><i class="fa fa-at">@</i>company@youremail.com</li>
-								<li><i class="fa fa-skype"></i>Medical Skype Name</li>
+								<li><i class="fa fa-phone"></i>(51) 8522-6685</li>
+								<li><i class="fa fa-at">@</i>atendimento@utintesa.com.br</li>
+								<li><i class="fa fa-skype"></i>UTIntensa</li>
 							</ul>
 							<nav>
 								<a href="#" class="fa fa-twitter"></a>
@@ -164,54 +209,44 @@
 						</section>
 						<!--/ location -->	
 					</div>
-					
 					<div class="grid-col grid-col-3">
 						<!-- last news -->
 						<section class="widget-alt recent-posts">
 							<div class="widget-icon"></div>
-							<div class="widget-title">Recent Posts</div>
+							<div class="widget-title">Especialidades</div>
 							<ul>
-								<li>
-									<a href="#"><img src="pic/post/1.png" width="80" height="80" alt=""></a>
-									<p><a href="#">New study links lutein with eye health benefits, consectetur adipiscing</a><br>5 months ago</p>
-								</li>
-								<li>
-									<a href="#"><img src="pic/post/2.png" width="80" height="80" alt=""></a>
-									<p><a href="#">Pets may reduce risk of heart disease, et congue dolor heart</a><br>8 months ago</p>
-								</li>
-								<li>
-									<a href="#"><img src="pic/post/3.png" width="80" height="80" alt=""></a>
-									<p><a href="#">Discoveries offer a new explanation for diabetes, consectetur</a><br>10 months ago</p>
-								</li>
+								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin justo non odio molestie, sed venenatis elit, consectetur adipiscing.</li>
+								<li>Donec quis condimentum leo, et congue dolor. Integer auctor facilisis odio. Duis vitae nibh tristique, consectetur lacus a, facilisis rutrum enim.</li>
+								<li>Cras fermentum interdum dapibus. Maecenas imperdiet, consectetur adipiscing magna nec odio cursus, vitae consequat ante.</li>
 							</ul>
 						</section>
-						<!--/ last news -->						
-					</div>
-					
+						<!--/ last news -->
+					</div>	
 					<div class="grid-col grid-col-3">
 						<!-- work time -->
 						<section class="widget-alt work-time">
 							<div class="widget-icon"></div>
 							<dl>
-								<dt>Mon</dt>
-								<dd>08:00 am - 12:00 pm</dd>
-								<dt>Tue</dt>
-								<dd>01:00 am - 05:00 pm</dd>
-								<dt>Wed</dt>
-								<dd>Free day</dd>
-								<dt>Thu</dt>
-								<dd>08:00 am - 12:00 pm</dd>
-								<dt>Fri</dt>
-								<dd>08:00 am - 12:00 pm</dd>
-								<dt>Sat</dt>
-								<dd>08:00 am - 12:00 pm</dd>
-								<dt>Sun</dt>
-								<dd>Free day</dd>
+								<dt>Seg</dt>
+								<dd>08:00 - 9:00</dd>
+								<dt>Ter</dt>
+								<dd>10:00 - 11:00</dd>
+								<dt>Qua</dt>
+								<dd>13:00 - 14:00</dd>
+								<dt>Qui</dt>
+								<dd>14:00 - 15:00</dd>
+								<dt>Sexta</dt>
+								<dd>18:00 - 19:00</dd>
+								<dt>Sáb</dt>
+								<dd>14:00 - 15:00</dd>
+								<dt>Dom</dt>
+								<dd>14:00 - 16:00</dd>
 							</dl>
-							<a href="#" class="button">Make an Appointment</a>
+							<a href="#" class="button">Marque sua visita</a>
 						</section>
 						<!--/ work time -->							
 					</div>
+					
 				</div>
 			</footer>
 			<!--/ page footer -->

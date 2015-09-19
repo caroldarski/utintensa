@@ -35,122 +35,42 @@
 						<!-- logo -->
 						<section id="logo" class="logo">
 							<div>
-								<a href="index.html"><img src="img/blue/utintensa.png" alt="Clinico"></a>
+								<a href="index.html"><img src="static/img/blue/utintensa.png" alt="Clinico"></a>
 							</div>
 						</section>
 						<!--/ logo -->
-						
+
 						<!-- main nav -->
 						<nav class="main-nav">
 							<ul>
-								<li>
-									<a href="news-default.html"><i class="fa fa-plus"></i>Login</a>
-									<ul>
-										<li class="text">
-											<fieldset>
-												<legend>Login: </legend>
-												
-												<input type="text" placeholder="Usuário" id="usuario" name="usuario" class="ui-autocomplete-input" autocomplete="on">
-												</br>
-												<input type="text" placeholder="Senha" id="senha" name="senha" class="ui-autocomplete-input" autocomplete="off">
-												<div>
-													<button id="wpb_button" type="button">Entrar</button>
-												</div>
-											</fieldset>
-										</li>
-									</ul>
-								</li>
-								
-								<li>
-									<a href="index.html" class="active"><i class="fa fa-plus"></i>Inicio</a>
-									<ul>
-										<li>
-											<a href="index.html" class="active">Medical Style</a>
-											<ul>
-												<li class="text">
-													<h2>Hospital Protótipo</h2>
-													<hr>
-													Av. Unisinos, 123<br>São Leopoldo, CEP 92022-718
-													<hr>
-													(51) 8522-6685<br>atendimento@utintesa.com.br
-													<a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a href="services.html"><i class="fa fa-plus"></i>Serviços</a>
-								</li>
-								<li>
-									<a href="timetable-week.html"><i class="fa fa-plus"></i>Calendário</a>
-									<ul>
-										<li><a href="timetable-month.html">Mês</a></li>
-										<li><a href="timetable-week.html">Semana</a></li>
-										<li><a href="timetable-list.html">Lista</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="contacts.html"><i class="fa fa-plus"></i>Contato</a>
-								</li>
+								<li><a href="{{ url_for('home') }}">Inicio</a></li>
+								<li><a href="{{ url_for('about') }}">Sobre</a></li>
+								<li><a href="{{ url_for('contact') }}">Contato</a></li>
+								<li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+								{% if 'email' in session %}
+								<li><a href="{{ url_for('profile') }}">Perfil</a></li>
+								<li><a href="{{ url_for('signout') }}">Sair</a></li>
+								{% else %}
+								<li><a href="{{ url_for('signin') }}">Entrar</a></li>
+								{% endif %}
 							</ul>
 						</nav>
 						<!--/ main nav -->
-						
+
 						<!-- mobile nav -->
 						<nav id="mobile-main-nav" class="mobile-main-nav">
-							<i class="fa fa-bars"></i><a href="#" class="opener">Navigation</a>
+							<i class="fa fa-bars"></i><a href="#" class="opener">Navegação</a>
 							<ul>
-								<li>
-									<a href="news-default.html"><i class="fa fa-plus"></i>Login</a>
-									<ul>
-										<li class="text">
-											<fieldset>
-												<legend>Login: </legend>
-												
-												<input type="text" placeholder="Usuário" id="usuario" name="usuario" class="ui-autocomplete-input" autocomplete="on">
-												</br>
-												<input type="text" placeholder="Senha" id="senha" name="senha" class="ui-autocomplete-input" autocomplete="off">
-												<div>
-													<button id="wpb_button" type="button">Entrar</button>
-												</div>
-											</fieldset>
-										</li>
-									</ul>
-								</li>
-								
-								<li>
-									<a href="index.html" class="active"><i class="fa fa-plus"></i>Inicio</a>
-									<ul>
-										<li>
-											<a href="index.html" class="active">Medical Style</a>
-											<ul>
-												<li class="text">
-													<h2>Hospital Protótipo</h2>
-													<hr>
-													Av. Unisinos, 123<br>São Leopoldo, CEP 92022-718
-													<hr>
-													(51) 8522-6685<br>atendimento@utintesa.com.br
-													<a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a href="services.html"><i class="fa fa-plus"></i>Serviços</a>
-								</li>
-								<li>
-									<a href="timetable-week.html"><i class="fa fa-plus"></i>Calendário</a>
-									<ul>
-										<li><a href="timetable-month.html">Mês</a></li>
-										<li><a href="timetable-week.html">Semana</a></li>
-										<li><a href="timetable-list.html">Lista</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="contacts.html"><i class="fa fa-plus"></i>Contato</a>
-								</li>
+								<li><a href="{{ url_for('home') }}">Inicio</a></li>
+								<li><a href="{{ url_for('about') }}">Sobre</a></li>
+								<li><a href="{{ url_for('contact') }}">Contato</a></li>
+								<li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+								{% if 'email' in session %}
+								<li><a href="{{ url_for('profile') }}">Perfil</a></li>
+								<li><a href="{{ url_for('signout') }}">Sair</a></li>
+								{% else %}
+								<li><a href="{{ url_for('signin') }}">Entrar</a></li>
+								{% endif %}
 							</ul>
 						</nav>
 						<!--/ mobile nav -->
@@ -160,46 +80,14 @@
 			<!--/ page header -->
 			
 			
-			<!-- quick search -->
-			<form id="quick-search" class="quick-search">
-				<fieldset>
-					<legend>Quick Search:</legend>
-					
-					<input type="text" placeholder="Search by name" id="docname" name="docname" class="ui-autocomplete-input" autocomplete="off">
-					
-					<select>
-						<option value="0">Speciality</option>
-						<option value="1">Ophthomologist</option>
-						<option value="2">Dermatologist</option>
-						<option value="3">Neorologist</option>
-						<option value="4">Surgeon</option>
-					</select>
-					
-					<select>
-						<option value="0">Locations</option>
-						<option value="1">Primary Health Care</option>
-						<option value="2">Gynaecological Clinic</option>
-						<option value="3">Diagnosis With Precise</option>
-						<option value="4">Cardiac Clinic</option>
-						<option value="5">General Surgery</option>
-					</select>
-					
-					<button type="submit">Search</button>
-					<div class="switcher">
-						<button id="quick-search-switcher" type="button">Ache um Médico</button>
-					</div>
-				</fieldset>				
-			</form>
-			<!--/ quick search -->
-
 			<!-- page title -->
 			<section class="page-title">
 				<div class="grid-row clearfix">
-					<h1>Dashboard</h1>
+					<h1>Quadro de Notificações</h1>
 					
 					<nav class="bread-crumbs">
 						<a href="index.html">Início</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;
-						<a href="#">Dashboard</a>
+						<a href="#">Quadro de Notificações</a>
 					</nav>
 				</div>
 			</section>

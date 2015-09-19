@@ -942,6 +942,17 @@ a {
 }
 /* Feature unlimited color */
 
+/* page 403 */
+#block-403-substrate{
+	background:#008fd5;
+}
+/* page 403 */
+
+/* Feature unlimited color */
+.section-headers{
+	color:#008fd5;
+}
+
 
 /*----------------------------------------------------------------------------*/
 /*                                   FOOTER                                   */

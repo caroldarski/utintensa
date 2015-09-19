@@ -1,6 +1,6 @@
 from UTIntensa import app
 from flask import render_template, request, flash, session, url_for, redirect
-from forms import ContactForm, SigninForm, ProfileForm
+from forms import ContactForm, SigninForm, ProfileForm, CreatePersonForm
 from flask.ext.mail import Message, Mail
 from models import db, User, Profile
  
@@ -44,17 +44,18 @@ def contact():
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
-	form = ProfileForm()
-  
+	
 	if 'email' not in session:
 		return redirect(url_for('signin'))
-  	
+  
 	user = User.query.filter_by(email = session['email']).first()
 	profile = Profile.query.filter_by(uid = user.uid).first()
 	
-	form.updateData(profile, user)
-	
+	form = ProfileForm(obj=profile)
+	form.updateHeaderData(profile, user)
+
 	if request.method == 'POST':
+		print(form.validate())
 		if form.validate() == False:
 			return render_template('profile.html', form=form)
 		else:
@@ -66,21 +67,45 @@ def profile():
 		if user is None:
 			return redirect(url_for('signin'))
 		else:
-			return render_template('profile.html', form=form)
-	
+			return render_template('profile.html', form=form)\
+
 @app.route('/dashboard')
 def dashboard():
- 
-  if 'email' not in session:
-    return redirect(url_for('signin'))
- 
-  user = User.query.filter_by(email = session['email']).first()
- 
-  if user is None:
-    return redirect(url_for('signin'))
-  else:
-		return render_template('dashboard.html')
-	
+	if 'email' not in session:
+		return redirect(url_for('signin'))
+
+	user = User.query.filter_by(email = session['email']).first()
+
+	if user is None:
+		return redirect(url_for('signin'))
+	else:
+		return render_template('dashboard.html')\
+
+@app.errorhandler(404)
+def page_not_found(e):
+	return render_template('page-404.html'), 404
+
+@app.route('/createPerson', methods=['GET', 'POST'])
+def createPerson():
+	if 'email' not in session:
+		return redirect(url_for('signin'))
+
+	form = CreatePersonForm()
+	user = User.query.filter_by(email = session['email']).first()
+	profile = Profile.query.filter_by(uid = user.uid).first()
+
+	if user is None:
+		return redirect(url_for('signin'))
+	else:
+		if profile.role == 'Administrador(a)':
+			return render_template('createPerson.html', form=form)
+		else:
+			return redirect('403_page')
+
+@app.route('/403_page')
+def permissionDeniedPage():
+	return render_template('page-403.html')
+
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
 	form = SigninForm()

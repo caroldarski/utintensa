@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms.fields import TextField, TextAreaField, SubmitField, PasswordField
+from wtforms.fields import TextField, TextAreaField, SubmitField, PasswordField, SelectField
 from wtforms.validators import DataRequired
 from models import db, User, Profile
 
@@ -30,7 +30,7 @@ class SigninForm(Form):
 			return False
 
 class ProfileForm(Form):
-	birthDate = TextField("Data de Nascimento", validators=[DataRequired("Por favor informe sua data de nascimento.")])
+	birthDate = TextField("Data de Nascimento")
 	cpf = TextField("CPF", validators=[DataRequired("Por favor informe seu CPF")])
 	rg = TextField("RG", validators=[DataRequired("Por favor informe seu RG")])
 	address = TextField("Endereco", validators=[DataRequired("Por favor informe seu endereco")])
@@ -39,13 +39,13 @@ class ProfileForm(Form):
 	district = TextField("Bairro")
 	region = TextField("UF", validators=[DataRequired("Por favor informe sua UF")])
 	country = TextField("Pais", validators=[DataRequired("Por favor informe seu pais")])
-	telephone = TextField("Telefone", validators=[DataRequired("Por favor informe seu telefone")])
+	telephone = TextField("Telefone")
 	cellphone = TextField("Celular", validators=[DataRequired("Por favor informe seu telefone celular")])
 	profileType = TextField("Tipo de perfil")
 	role = TextField("Cargo")
 	bloodType = TextField("Tipo Sanguineo", validators=[DataRequired("Por favor informe seu tipo sanguineo")])
 	uName = TextField("Usuario")
-	submit = SubmitField("Salvar")
+	submit = SubmitField("SALVAR")
 	 
 	def __init__(self, *args, **kwargs):
 		Form.__init__(self, *args, **kwargs)
@@ -54,19 +54,36 @@ class ProfileForm(Form):
 		if not Form.validate(self):
 			return False
 			
-	def updateData(self, p, u):
-		self.birthDate.data = p.birthdate
-		self.cpf.data = p.cpf
-		self.rg.data = p.rg
-		self.address.data = p.address
-		self.number.data = str(p.number)
-		self.additionalInformation.data = p.additionalInformation
-		self.district.data = p.district
-		self.region.data = p.region
-		self.country.data = p.country
-		self.telephone.data = p.telephone
-		self.cellphone.data = p.cellphone
+	def updateHeaderData(self, p, u):
 		self.role.label = "Cargo: " + p.role 
-		self.bloodType.data = p.bloodType
 		self.id = p.uid
-		self.uName.label = u.firstname
+		self.uName.label = p.firstname, " ", p.lastname
+
+
+class CreatePersonForm(Form):
+	firstname = TextField("Primeiro nome")
+	lastname = TextField("Sobrenome", validators=[DataRequired("Por favor informe o primeiro nome")])
+	birthDate = TextField("Data de Nascimento", validators=[DataRequired("Por favor informe o sobrenome")])
+	cpf = TextField("CPF", validators=[DataRequired("Por favor informe seu CPF")])
+	rg = TextField("RG", validators=[DataRequired("Por favor informe seu RG")])
+	address = TextField("Endereco", validators=[DataRequired("Por favor informe seu endereco")])
+	number = TextField("Numero", validators=[DataRequired("Por favor informe seu numero")])
+	additionalInformation = TextField("Complemento")
+	district = TextField("Bairro")
+	region = TextField("UF", validators=[DataRequired("Por favor informe sua UF")])
+	country = TextField("Pais", validators=[DataRequired("Por favor informe seu pais")])
+	telephone = TextField("Telefone")
+	cellphone = TextField("Celular", validators=[DataRequired("Por favor informe seu telefone celular")])
+	profileType = TextField("Tipo de perfil")
+	myRoles = [('1', ('Medico(a)')), ('2', ('Enfermeiro(a)')), ('3', ('Administrador(a)'))]
+	role = SelectField(u'Papel', choices = myRoles, validators=[DataRequired("Por favor informe o papel")])
+	myBloodTypes = [('1', ('A+')), ('2', ('B+')), ('3', ('AB+')), ('4', ('O+')), ('5', ('A-')), ('6', ('B-')), ('7', ('AB-')), ('8', ('O-'))]
+	bloodType = SelectField(u'Tipo Sanguineo', choices = myBloodTypes, validators=[DataRequired("Por favor informe o tipo sanguineo")])
+	submit = SubmitField("SALVAR")
+
+	def __init__(self, *args, **kwargs):
+		Form.__init__(self, *args, **kwargs)
+
+	def validate(self):
+		if not Form.validate(self):
+			return False
