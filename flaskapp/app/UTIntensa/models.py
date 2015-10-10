@@ -1,6 +1,7 @@
 from flask.ext.sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
- 
+from datetime import datetime
+
 db = SQLAlchemy()
  
 class User(db.Model):
@@ -79,3 +80,33 @@ class Patients(Profile):
 	def __init__(self, id, firstname, lastname, cpf, rg, address, number, additionalInformation, district, region, country, telephone, cellphone, profileType, bloodType):
 		role = "Paciente"
 		Profile.__init__(self, id, firstname, lastname, cpf, rg, address, number, additionalInformation, district, region, country, telephone, cellphone, profileType, role, bloodType)
+
+class VitalSign(db.Model):
+	__tablename__ = 'VitalSign'
+	uid = db.Column(db.Integer, primary_key = True)
+	idPatient = db.Column(db.Integer)
+	vitalSign = db.Column(db.String(30))
+	value = db.Column(db.Float)
+	dateConsulting = db.Column(db.DateTime)
+
+	def __init__(self, patientId, vitalSign, value, dateConsulting):
+		self.idPatient = patientId
+		self.dateConsulting = dateConsulting
+		self.value = value
+		self.vitalSign = vitalSign
+
+class Temperature(VitalSign):
+
+	def __init__(self, patientId, value):
+		self.idPatient = patientId
+		self.value = value
+		self.vitalSign = "Temperature"
+		self.dateConsulting = datetime.now()
+
+class Heartbeat(VitalSign):
+
+	def __init__(self, patientId, value):
+		self.idPatient = patientId
+		self.value = value
+		self.vitalSign = "Heartbeat"
+		self.dateConsulting = datetime.now()

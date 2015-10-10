@@ -108,6 +108,15 @@
 						</select>
 						
 						<div class="grid">			
+							{% for dash in dashboard %}
+								<div class="item item1">
+									<h2>{{ dash.name }}</h2>
+									<h3><a class="fa fa-heart"> {{ dash.heartbeat }} b/s</a></h3>
+									<h3><a class="fa fa-plus"> {{ dash.temperature }} </a></h3>
+									<p> {{ dash.idade }} </p>
+								</div>
+								<hr />
+							{% endfor %}
 							<div class="item item1">
 								<div class="pic">
 									<img src="pictures/ana.jpg" alt="Ana">
