@@ -9,7 +9,7 @@ class User(db.Model):
 	uid = db.Column(db.Integer, primary_key = True)
 	email = db.Column(db.String(120), unique=True)
 	pwdhash = db.Column(db.String(54))
-   
+	rfid = db.Column(db.String(50))
 	def __init__(self, email, password):
 		self.email = email.lower()
 		self.set_password(password)
@@ -83,7 +83,7 @@ class Patients(Profile):
 
 class VitalSign(db.Model):
 	__tablename__ = 'VitalSign'
-	uid = db.Column(db.Integer, primary_key = True)
+	id = db.Column(db.Integer, primary_key = True)
 	idPatient = db.Column(db.Integer)
 	vitalSign = db.Column(db.String(30))
 	value = db.Column(db.Float)
@@ -110,3 +110,26 @@ class Heartbeat(VitalSign):
 		self.value = value
 		self.vitalSign = "Heartbeat"
 		self.dateConsulting = datetime.now()
+
+class event(db.Model):
+	__tablename__ = "event"
+	id = db.Column(db.Integer, primary_key = True)
+	description = db.Column(db.String(60))
+	date = db.Column(db.DateTime)
+	time = db.Column(db.DateTime)
+	type = db.Column(db.Integer)
+	idRoom = db.Column(db.Integer)
+	idUser = db.Column(db.Integer)
+	idVSTemperature = db.Column(db.Integer)
+	idVSHeartbeat = db.Column(db.Integer)
+	idPatient = db.Column(db.Integer)
+
+	def __init__(self, description, idRoom, idVSTemp, idVSHeart, idPatient, idUser):
+		self.description = description
+		self.date = datetime.now().date()
+		self.time = datetime.now().time()
+		self.idRoom = idRoom
+		self.idVSTemperature = idVSTemp
+		self.idVSHeartbeat = idVSHeart
+		self.idPatient = idPatient
+		self.idUser = idUser

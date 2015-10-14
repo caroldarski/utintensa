@@ -87,3 +87,17 @@ class CreatePersonForm(Form):
 	def validate(self):
 		if not Form.validate(self):
 			return False
+
+class CreateMedicalAppointment(Form):
+	date = TextField("Data")
+	time = TextField("Horario")
+	type = TextField("Tipo de Atendimento")
+	idUser = TextField("Atendido por")
+	description = TextField("Descricao do Atendimento")
+
+	def __init__(self, *args, **kwargs):
+		Form.__init__(self, *args, **kwargs)
+
+	def validate(self):
+		if not Form.validate(self):
+			return False

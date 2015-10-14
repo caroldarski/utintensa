@@ -1,8 +1,8 @@
 from UTIntensa import app
 from flask import render_template, request, flash, session, url_for, redirect, jsonify
-from forms import ContactForm, SigninForm, ProfileForm, CreatePersonForm
+from forms import ContactForm, SigninForm, ProfileForm, CreatePersonForm, CreateMedicalAppointment
 from flask.ext.mail import Message, Mail
-from models import db, User, Profile, Temperature, Heartbeat
+from models import db, User, Profile, Temperature, Heartbeat, event
 
 mail = Mail()
 
@@ -95,11 +95,21 @@ def SendTemperature():
 
 @app.route('/RFIDCadastraConsulta', methods=['POST'])
 def RFIDCadastraConsulta():
-    IdRFID = request.json.get('IDRFID')
+    IdRFID = request.json.get('idrfid')
     iid = request.json.get('id')
+    idRoom = request.json.get('idroom')
     if IdRFID is None or iid is None:
         abort(400)
-    return jsonify({'id' : iid, 'RFID' : IdRFID})
+
+    cuser = User.query.filter_by(rfid = IdRFID).first()
+
+    temp = Temperature.query.filter(Temperature.idPatient == iid, Temperature.vitalSign == "Temperature").order_by(Temperature.dateConsulting.desc()).first()
+    heart = Heartbeat.query.filter(Heartbeat.idPatient == iid, Heartbeat.vitalSign == "Heartbeat").order_by(Heartbeat.dateConsulting.desc()).first()
+    eventOBJ = event("", idRoom, temp.value, heart.value, iid, cuser.uid)
+    db.session.add(eventOBJ)
+    db.session.commit()
+
+    return jsonify({'id' : iid})
 
 @app.route('/dashboard')
 def dashboard():
