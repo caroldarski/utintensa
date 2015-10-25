@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>UTIntensa</title>
+		<title>Clinico - Responsive Medical and Health Template</title>
 		
 		<!-- metas -->
 		<meta charset="utf-8">
@@ -23,7 +23,6 @@
 		<!--/ styles -->
 		
 		<!--[if lt IE 9]><script src="static/js/html5.js"></script><![endif]-->
-
 	</head>
 	
 	<body>
@@ -65,10 +64,19 @@
 								<li><a href="{{ url_for('home') }}">Inicio</a></li>
 								<li><a href="{{ url_for('about') }}">Sobre</a></li>
 								<li><a href="{{ url_for('contact') }}">Contato</a></li>
-								<li><a href="{{ url_for('dashboardMethod') }}">Dashboard</a></li>
+
 								{% if 'email' in session %}
 								<li><a href="{{ url_for('profile') }}">Perfil</a></li>
 								<li><a href="{{ url_for('signout') }}">Sair</a></li>
+								<li><a href="{{ url_for('dashboardMethod') }}">Dashboard</a></li>
+								<li>
+									<a href="#" class="active">Cadastros</a>
+									<ul>
+										<li><a href="{{ url_for('createPerson') }}">Paciente</a></li>
+										<li><a href="{{ url_for('createMedicament') }}">Medicamento</a></li>
+										<li><a href="{{ url_for('createMedicamentType') }}" class="active">Tipos de Medicamento</a></li>
+									</ul>
+								</li>
 								{% else %}
 								<li><a href="{{ url_for('signin') }}">Entrar</a></li>
 								{% endif %}
@@ -79,51 +87,56 @@
 				</div>
 			</header>
 			<!--/ page header -->
-			
-			
+
+<!--/ HEADERS -->
+
 			<!-- page title -->
 			<section class="page-title">
 				<div class="grid-row clearfix">
-					<h1>Quadro de Notificações</h1>
+					<h1>Lista de Registros Médicos</h1>
 					
 					<nav class="bread-crumbs">
 						<a href="index.html">Início</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;
-						<a href="#">Quadro de Notificações</a>
+						<a href="#">Cadastro de Medicamentos</a>
 					</nav>
 				</div>
 			</section>
 			<!--/ page title -->
-			
-			<!-- page content -->
+
 			<main class="page-content">
 				<div class="grid-row">
-					<!-- doctors -->
-					<section id="doctors" class="doctors">
-						<div class="widget-title">UTI</div>
-						
-						<select class="filter">
-							<option value=".item">Todos os setores</option>
-							<option value=".item1">Ala Cirurgica</option>
-							<option value=".item2">Maternidade</option>
-							<option value=".item3">Pediatria</option>
-						</select>
-						
-						<div id="g" class="grid">
-
-							<div id="dash" class="item item1">
-								<h2>Teste</h2>
-								<h3><a class="fa fa-heart"> 20 b/s</a></h3>
-								<h3><a class="fa fa-plus"> 10 </a></h3>
-								<p> 0 </p>
-							</div>
+					<!-- news -->
+					<section id="news" class="widget news news-4">
+						<div class="grid">
+							{% for dt in data %}
+								<div class="item">
+									<h3><a href="#"> </a></h3>
+									<div class="date"><i class="fa fa-comment"><span>3</span></i></div>
+									<div class="pic">
+										<img src="pic/photo-tour-1.jpg" alt="Nullam euismod commodo">
+										<div class="links">
+											<ul>
+												<li><a href="#" class="fa fa-plus"></a></li>
+											</ul>
+										</div>
+									</div>
+									<p>Mauris vitae quam quam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer ullamcorper ultricies eros eu consequat. Nullam convallis volutpat nunc, gravida vestibulum mauris interdum et. Nunc tristique eros nec dictum blandit. Cras eu turpis augue. Ut non molestie nulla. Nulla nec rutrum tortor, in fermentum nisl <a href="#">&rarr;</a></p>
+									<div class="cats">Posted in: <a href="#">Dental Clinic</a>, <a href="#">General</a>, <a href="#">News</a></div>
+								</div>
+							{% endfor %}
 						</div>
-					</section>
-					<!--/ doctors -->
-				</div>
-			</main>
-			<!--/ page content -->
 
-			<!-- page footer -->
+						<a href="{{ url_for('createRecords') }}" class="button more"><i class="fa fa-plus"></i>Novo</a>
+					</section>
+					<!--/ news -->
+					<hr>
+				</div>
+			</div>
+			</main>
+
+
+
+<!-- FOOTERS -->
 			<footer class="page-footer">
 				<a href="#" id="top-link" class="top-link"><i class="fa fa-angle-double-up"></i></a>
 				
@@ -203,6 +216,10 @@
 			</footer>
 			<!--/ page footer -->
 			
+			<!-- copyrights -->
+			<div class="copyrights">Copyrights ©2014: Clinico - Responsive Medical and Health Template</div>
+			<!--/ copyrights -->
+
 		</div>
 		
 		<!-- scripts -->
@@ -238,37 +255,6 @@
 		<script type="text/javascript" src="static/js/jquery.autocomplete.min.js"></script>
 		<script type="text/javascript" src="static/js/scripts.js"></script>
 		<!--/ scripts -->
-
-	<script type="text/javascript">
-			var d = {{ objectUpdate | safe }}
-			function doPoll(){
-				$.post('/dashboardUpdate', d, function(response) {
-					var string;
-					var contentModified = '';
-					var cModified = '';
-					json = JSON.parse(response);
-					$(json.data).each(function(index){
-						contentModified = contentModified + '<a href="' + '{{ url_for("dashboardDetail", id=999999) }}' + '">' +
-												'<div class="item item1">' +
-												'<h2> ' + this.name + '</h2>' +
-												'<h3><a class="fa fa-heart"> ' + this.heartbeat + ' b/m </a></h3>' +
-												'<h3><a class="fa fa-plus"> ' + this.temperature + '</a></h3>' +
-												'<p>' + this.age + ' anos </p>' +
-											'</div> </a>';
-
-						cModified = contentModified.replace('999999', this.id);
-						contentModified = cModified;
-    				});
-    				$.get( "/main.html", function( data ){
-									string = data;
-								}, "html");
-					document.getElementById('g').innerHTML = contentModified;
-    				//$( "#dash" ).empty().append( content );
-					setTimeout(doPoll,5000);
-				});
-			}
-			doPoll()
-
-		</script>
+		
 	</body>
 </html>

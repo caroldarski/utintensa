@@ -19,12 +19,11 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/color-blue.css') }}">
-		
 		<!--/ styles -->
-		
+
 		<!--[if lt IE 9]><script src="{{ url_for('static', filename='js/html5.js') }}"></script><![endif]-->
 	</head>
-	
+
 	<body>
 		<div class="page">
 
@@ -82,72 +81,279 @@
 			<!-- page title -->
 			<section class="page-title">
 				<div class="grid-row clearfix">
-					<h1>{{ patient.firstname }} {{ patient.lastname }}</h1>
+					<h1>Calendário de Registros</h1>
 					<nav class="bread-crumbs">
-						<a href="index.html">Início</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;
-						<a href="features-accordion.html">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;
-						<a href="#">Detalhe Paciente</a>
+						<a href="{{ url_for('profile') }} ">Início</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;
+						<a href="{{ url_for('dashboardMethod') }}">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;
+						<a href="{{ url_for('dashboardDetail', id=3)}}">Detalhe Paciente</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;
+						<a href="#">Calendário de Registros</a>
 					</nav>
 				</div>
 			</section>
-			
 			<!--/ page title -->
 
+			<!-- page content -->
 			<main class="page-content">
 				<div class="grid-row">
-					
-					<div class="grid-col grid-col-9">
-						<div class="grid-col grid-col-3">
-							<img src="{{ url_for('static', filename='pictures/ana-profile.png') }}" alt={{ patient.firstname }}></img>
-						</div>
-						
-						<div class="grid-col grid-col-6">
-							</br>
-							</br>
-							<div class="widget-title-baby">Idade: {{ dash.age }} anos</div>
-							<div class="widget-title-baby">Setor: {{ room.building }} {{ room.floor}} {{ room.corridor }} {{ room.room }}</div>
-							{% if dash.criticTemp or dash.criticHeart %}
-								<div class="widget-title-baby">Estado:<a class="widget-title-baby-estavel"> Instável</class></div>
-							{% else %}
-								<div class="widget-title-baby">Estado:<a class="widget-title-baby-estavel"> Estável</class></div>
-							{% endif %}
-						</div>
-						
-						</br>
-						
-						<!-- chart graph -->
-						<div class="wpb_row vc_row-fluid">
-							<div class="widget-title">Média de Temperatura (nas ultimas 24h)</div>
-								<div class="chart-graph" data-coords="12/36;13/36.4;14/36.5;15/37;16/38.4;17/37.5;18/37.2" data-color="#008fd5"></div>
-						</div>
-						<!--/ chart graph -->
-						
-						<!-- chart graph -->
-						<div class="wpb_row vc_row-fluid">
-							<div class="widget-title">Média de Batimentos (nas ultimas 24h)</div>
-								<div class="chart-graph" data-coords="12/35;13/37;14/40;15/38;16/55;17/44;18/42" data-color="#008fd5"></div>
-						</div>
-						<!--/ chart graph -->
+					<!-- timetable -->
+					<section class="timetable">
+						<div class="widget-title">Todos os Registros</div>
 
-					</div>
-					<div class="grid-col grid-col-3">
+						<header>
+							<div class="year">2015</div>
+							<div class="month">Outubro</div>
+							<div class="day">
+								<input type="text" value="25/10/15">
+								<a href="#" class="prev fa fa-angle-left"></a>
+								<a href="#" class="next fa fa-angle-right"></a>
+								<a href="#" class="cal fa fa-calendar"></a>
+							</div>
 
-						<!-- categories -->
-						<section class="widget widget-sevices">
-							<ul>
-								<li><i class="fa fa-bookmark"></i><a href="{{ url_for('calendario', id=3 )}}">Protuário do Paciente</a></li>
-							</ul>
-						</section>
-						<!--/ categories -->
+							<div class="switcher">
+								<a href="timetable-month.html" class="active"><i class="fa fa-calendar"></i></a>
+								<a href="timetable-week.html"><i class="fa fa-calendar-o"></i></a>
+								<a href="timetable-list.html"><i class="fa fa-list"></i></a>
+							</div>
+						</header>
 
-					</div>
+						<table class="month-view" id="calendario">
+							<tr>
+								<th>Segunda</th>
+								<th>Terça</th>
+								<th>Quarta</th>
+								<th>Quinta</th>
+								<th>Sexta</th>
+								<th>Sabado</th>
+								<th>Domingo</th>
+							</tr>
+
+							<tr>
+
+
+								<td>
+									<div class="event" id="dia1">
+										<div class="date">01</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia2">
+										<div class="date">02</div>
+									</div>
+								</td>
+
+							</tr>
+
+							<tr>
+								<td>
+									<div class="event" id="dia3">
+										<div class="date">03</div>
+									</div>
+								</td>
+								<td>
+									<div class="event" id="dia4">
+										<div class="date">04</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia5">
+										<div class="date">05</div>
+									</div>
+								</td>
+								<td>
+									<div class="event" id="dia6">
+										<div class="date">06</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia7">
+										<div class="date">07</div>
+									</div>
+								</td>
+								<td>
+									<div class="event" id="dia8">
+										<div class="date">08</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia9">
+										<div class="date">09</div>
+									</div>
+								</td>
+
+							</tr>
+
+							<tr>
+								<td>
+									<div class="event" id="dia10">
+										<div class="date">10</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia11">
+										<div class="date">11</div>
+									</div>
+								</td>
+								<td>
+									<div class="event" id="dia12">
+										<div class="date">12</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia13">
+										<div class="date">13</div>
+									</div>
+								</td>
+								<td>
+									<div class="event" id="dia14">
+										<div class="date">14</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia15">
+										<div class="date">15</div>
+									</div>
+								</td>
+								<td>
+									<div class="event" id="dia16">
+										<div class="date">16</div>
+									</div>
+								</td>
+
+							</tr>
+
+							<tr>
+								<td>
+									<div class="event" id="dia17">
+										<div class="date">17</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia18">
+										<div class="date">18</div>
+									</div>
+								</td>
+								<td>
+									<div class="event" id="dia19">
+										<div class="date">19</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia20">
+										<div class="date">20</div>
+									</div>
+								</td>
+								<td>
+									<div class="event" id="dia21">
+										<div class="date">21</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia22">
+										<div class="date">22</div>
+									</div>
+								</td>
+								<td>
+									<div class="event" id="dia23">
+										<div class="date">23</div>
+									</div>
+								</td>
+
+							</tr>
+
+							<tr>
+								<td>
+									<div class="event" id="dia24">
+										<div class="date">24</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia25">
+										<div class="date">25</div>
+									</div>
+								</td>
+								<td>
+									<div class="event" id="dia26">
+										<div class="date">26</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia27">
+										<div class="date">27</div>
+									</div>
+								</td>
+								<td>
+									<div class="event" id="dia28">
+										<div class="date">28</div>
+									</div>
+								</td>
+
+								<td>
+									<div class="event" id="dia29">
+										<div class="date">29</div>
+									</div>
+								</td>
+								<td>
+									<div class="event" id="dia30">
+										<div class="date">30</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="event" id="dia31">
+										<div class="date">31</div>
+									</div>
+								</td>
+
+
+						</table>
+
+						<div class="mobile-view" id="mobile">
+							<dl>
+								<dt><span>Monday</span></dt>
+								<dd>
+									<ul>
+										<li><i class="fa fa-clock-o"></i><span>06.00 - 07.00</span>Pain Management, John Franklin</li>
+										<li><i class="fa fa-clock-o"></i><span>07.00 - 08.00</span>Radiation Oncology, John Franklin</li>
+										<li><i class="fa fa-clock-o"></i><span>10.00 - 11.00</span>Infectious Diseases, John Franklin</li>
+										<li><i class="fa fa-clock-o"></i><span>15.00 - 18.00</span>Emergency Department, John Franklin</li>
+										<li><i class="fa fa-clock-o"></i><span>19.00 - 20.00</span>Emergency Department, John Franklin</li>
+									</ul>
+								</dd>
+								<dt><span>Tuesday</span></dt>
+								<dd>
+									<ul>
+										<li><i class="fa fa-clock-o"></i><span>07.00 - 08.00</span>Infectious Diseases, John Franklin</li>
+										<li><i class="fa fa-clock-o"></i><span>09.00 - 10.00</span>Pain Management, John Franklin</li>
+										<li><i class="fa fa-clock-o"></i><span>12.00 - 13.00</span>Radiation Oncology, John Franklin</li>
+										<li><i class="fa fa-clock-o"></i><span>15.00 - 18.00</span>Emergency Department, John Franklin</li>
+										<li><i class="fa fa-clock-o"></i><span>19.00 - 20.00</span>Emergency Department, John Franklin</li>
+									</ul>
+								</dd>
+							</dl>
+						</div>
+					</section>
+					<!--/ timetable -->
 				</div>
 			</main>
+			<!--/ page content -->
 
 			<!-- page footer -->
 			<footer class="page-footer">
 				<a href="#" id="top-link" class="top-link"><i class="fa fa-angle-double-up"></i></a>
-				
+
 				<div class="grid-row">
 					<div class="grid-col grid-col-3">
 						<!-- last news -->
@@ -162,7 +368,7 @@
 						</section>
 						<!--/ last news -->
 					</div>
-				
+
 					<div class="grid-col grid-col-3">
 						<!-- location -->
 						<section class="widget-alt location">
@@ -180,7 +386,7 @@
 								<a href="#" class="fa fa-instagram"></a>
 							</nav>
 						</section>
-						<!--/ location -->	
+						<!--/ location -->
 					</div>
 					<div class="grid-col grid-col-3">
 						<!-- last news -->
@@ -194,7 +400,7 @@
 							</ul>
 						</section>
 						<!--/ last news -->
-					</div>	
+					</div>
 					<div class="grid-col grid-col-3">
 						<!-- work time -->
 						<section class="widget-alt work-time">
@@ -217,15 +423,15 @@
 							</dl>
 							<a href="#" class="button">Marque sua visita</a>
 						</section>
-						<!--/ work time -->							
+						<!--/ work time -->
 					</div>
-					
+
 				</div>
 			</footer>
 			<!--/ page footer -->
 
 		</div>
-		
+
 		<!-- scripts -->
 		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
@@ -241,12 +447,12 @@
 		<script type="text/javascript" src="{{ url_for('static', filename='js/layerslider.transitions.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/layerslider.kreaturamedia.jquery.js') }}"></script>
 
-	<!-- Superscrollorama -->		
+	<!-- Superscrollorama -->
 		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.superscrollorama.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/TweenMax.min.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/TimelineMax.min.js') }}"></script>
 	<!--/ Superscrollorama -->
-	
+
 		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.core.min.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.widget.min.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.tabs.min.js') }}"></script>
@@ -259,6 +465,38 @@
 		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.autocomplete.min.js') }}"></script>
 		<script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 		<!--/ scripts -->
-		
+
+	<script type="text/javascript">
+			var d = {{ ev | safe }}
+
+			function doPoll(){
+				$.post('/calendario/id=' + d.idPatient, d, function(response) {
+					alert(response)
+					json = JSON.parse(response);
+
+					$(json.data).each(function(index){
+						alert('tchau')
+						contentModified = contentModified + '<a href="' + '{{ url_for("dashboardDetail", id=999999) }}' + '">' +
+												'<div class="item item1">' +
+												'<h2> ' + this.name + '</h2>' +
+												'<h3><a class="fa fa-heart"> ' +  + ' b/m </a></h3>' +
+												'<h3><a class="fa fa-plus"> ' + this.idRoom + '</a></h3>' +
+												'<p>' +  + ' anos </p>' +
+											'</div> </a>';
+
+						cModified = contentModified.replace('999999', this.id);
+						contentModified = cModified;
+    				});
+    				$.get( "/main.html", function( data ){
+									string = data;
+								}, "html");
+					document.getElementById('calendario').innerHTML = contentModified;
+    				//$( "#dash" ).empty().append( content );
+					setTimeout(doPoll,5000);
+				});
+			}
+			doPoll()
+
+		</script>
 	</body>
 </html>
