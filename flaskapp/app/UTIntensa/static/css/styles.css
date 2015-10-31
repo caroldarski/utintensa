@@ -4077,7 +4077,7 @@ iframe{
   opacity: 1;
 }
 .timetable .mobile-view {
-  display: none;
+  display: block;
 }
 .timetable .mobile-view dt {
   margin-top: 30px;

@@ -11,18 +11,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 		<!--/ metas -->
 		
-		<!-- styles -->
-		<link rel="stylesheet" type="text/css" href="static/css/layerslider.css">
-		<link rel="stylesheet" type="text/css" href="static/css/fullwidth/skin.css">
-		<link rel="stylesheet" type="text/css" href="static/css/font-awesome.css">
-		<link rel="stylesheet" type="text/css" href="static/css/owl.carousel.css">
-		<link rel="stylesheet" type="text/css" href="static/css/jquery.fancybox.css">
-		<link rel="stylesheet" type="text/css" href="static/css/styles.css">
-		<link rel="stylesheet" type="text/css" href="static/css/color-blue.css">
-		
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layerslider.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fullwidth/skin.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/color-blue.css') }}">
 		<!--/ styles -->
-		
-		<!--[if lt IE 9]><script src="static/js/html5.js"></script><![endif]-->
+
+		<!--[if lt IE 9]><script src="{{ url_for('static', filename='js/html5.js') }}"></script><![endif]-->
 	</head>
 	
 	<body>
@@ -104,7 +102,8 @@
 								<div class="wpb_wrapper">
 									<h2>Login</h2>
 
-									<form class="text" action="{{ url_for('createRecords') }}" method=post>
+									<form class="text" action="{{ url_for('createRecords', id=form.id.data) }}" method=post>
+
 										{{ form.hidden_tag() }}
 										{{ form.idUser.label }}
 
@@ -247,38 +246,37 @@
 		</div>
 		
 		<!-- scripts -->
-		<script type="text/javascript" src="static/js/jquery.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.migrate.min.js"></script>
-		<script type="text/javascript" src="static/js/owl.carousel.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.isotope.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.fancybox.pack.js"></script>
-		<script type="text/javascript" src="static/js/jquery.fancybox-media.js"></script>
-		<script type="text/javascript" src="static/js/jquery.flot.js"></script>
-		<script type="text/javascript" src="static/js/jquery.flot.pie.js"></script>
-		<script type="text/javascript" src="static/js/jquery.flot.categories.js"></script>
-		<script type="text/javascript" src="static/js/greensock.js"></script>
-		<script type="text/javascript" src="static/js/layerslider.transitions.js"></script>
-		<script type="text/javascript" src="static/js/layerslider.kreaturamedia.jquery.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.migrate.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.isotope.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fancybox.pack.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fancybox-media.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.flot.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.flot.pie.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.flot.categories.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/greensock.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/layerslider.transitions.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/layerslider.kreaturamedia.jquery.js') }}"></script>
 
-	<!-- Superscrollorama -->		
-		<script type="text/javascript" src="static/js/jquery.superscrollorama.js"></script>
-		<script type="text/javascript" src="static/js/TweenMax.min.js"></script>
-		<script type="text/javascript" src="static/js/TimelineMax.min.js"></script>
+	<!-- Superscrollorama -->
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.superscrollorama.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/TweenMax.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/TimelineMax.min.js') }}"></script>
 	<!--/ Superscrollorama -->
-	
-		<script type="text/javascript" src="static/js/jquery.ui.core.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.ui.widget.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.ui.tabs.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery-ui-tabs-rotate.js"></script>
-		<script type="text/javascript" src="static/js/jquery.ui.accordion.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.tweet.js"></script>
+
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.core.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.widget.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.tabs.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui-tabs-rotate.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.accordion.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.tweet.js') }}"></script>
 	<!-- EASYPIECHART -->
-		<script type="text/javascript" src="static/js/jquery.easypiechart.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easypiechart.js') }}"></script>
 	<!--/ EASYPIECHART -->
-		<script type="text/javascript" src="static/js/jquery.autocomplete.min.js"></script>
-		<script type="text/javascript" src="static/js/scripts.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.autocomplete.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 		<!--/ scripts -->
-		
 	</body>
 </html>

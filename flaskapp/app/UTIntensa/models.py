@@ -184,6 +184,38 @@ class records(db.Model):
 	dose = db.Column(db.Integer)
 	unitMeasure = db.Column(db.String(5))
 
+
+	def updateRecord(self, id, idRoom, uid, idPatient, idMedicament, description, dose, unitMeasure, idEvent):
+		self.id = id
+		self.idEvent = idEvent
+		self.description = description
+		self.idUser = uid
+		self.idPatient = idPatient
+		self.idRoom = idRoom
+		self.unitMeasure = unitMeasure
+		self.idMedicament = idMedicament
+		self.dose = dose
+
+
+	@property
+	def serialize(self):
+		return {
+				'id': self.id,
+				'idRoom': self.idRoom,
+				'idUser': self.idUser,
+				'idPatient': self.idPatient,
+				'idMedicament': self.idMedicament,
+				'idEvent': self.idEvent,
+				'description' : self.description,
+				'dose': self.dose,
+				'unitMeasure': self.unitMeasure,
+				'namePatient': self.getPatientName(self.idPatient),
+		}
+
+	def getPatientName(self, idPatient):
+		p = Profile.query.filter_by(uid = idPatient).first()
+		return p.firstname + " " + p.lastname
+
 	def __init__(self, idRoom, idDoctor, idPatient, idMedicament, description, dose, unitMea, idEvent):
 		self.idRoom = idRoom
 		self.idUser = idDoctor

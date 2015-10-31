@@ -113,6 +113,7 @@ class patientField(SelectField):
 			self.choices.append([p.uid, (p.firstname + " " + p.lastname)])
 
 class CreateMedicalAppointment(Form):
+	id = TextField("id")
 	date = TextField("Data")
 	time = TextField("Horario")
 	types = [('1', ('Visita Medica')), ('2', ('Visita da Enfermagem')), ('3', ('Emergencia')), ('4', ('Visita Especialista'))]

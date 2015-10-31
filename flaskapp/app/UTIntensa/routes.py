@@ -111,6 +111,10 @@ def RFIDCadastraConsulta():
     db.session.add(eventOBJ)
     db.session.commit()
 
+    re = records(idRoom, cuser.uid, iid, 0, "", 0, "", eventOBJ.id)
+    db.session.add(re)
+    db.session.commit()
+
     return jsonify({'id' : iid})
 
 @app.route('/dashboard', methods=['GET','POST'])
@@ -138,7 +142,6 @@ def dashboardMethod():
     if user is None:
         return redirect(url_for('signin'))
     else:
-        print "chamou dashboard.html"
         return render_template('dashboard.html', data=dashboardlist, objectUpdate=objectUpdate)
 
 @app.route('/dashboardUpdate', methods=['GET','POST'])
@@ -215,24 +218,60 @@ def createMedicament():
             else:
                 return redirect('403_page')
 
-@app.route('/RecordsList')
+@app.route('/RecordsList', methods=['POST', 'GET'])
 def recordsList():
     if 'email' not in session:
         return redirect(url_for('signin'))
 
-    return render_template('Records.html')
+    user = User.query.filter_by(email = session['email']).first()
+    profile = Profile.query.filter_by(uid = user.uid).first()
+    r = records.query.filter_by(idUser = profile.uid, description = "").all()
+    recordslist = []
+    for rec in r:
+        recordslist.append(rec)
 
-@app.route('/CreateRecords', methods=['GET', 'POST'])
-def createRecords():
+    updateobj = recordslist
+    objectUpdate = json.dumps({'data': [o.serialize for o in updateobj]})
+
+    return render_template('Records.html', objectUpdate=objectUpdate)
+
+@app.route('/recordsUpdate', methods=['GET','POST'])
+def recordsUpdate():
+
+    user = User.query.filter_by(email = session['email']).first()
+    profile = Profile.query.filter_by(uid = user.uid).first()
+    r = records.query.filter_by(idUser = profile.uid, description = "").all()
+    recordslist = []
+    for rec in r:
+        recordslist.append(rec)
+
+    updateobj = recordslist
+    objectUpdate = json.dumps({'data': [o.serialize for o in updateobj]})
+    return objectUpdate
+
+@app.route('/CreateRecords', defaults={'id': 0}, methods=['GET', 'POST'])
+@app.route('/CreateRecords/<id>', methods=['GET', 'POST'])
+def createRecords(id):
     if 'email' not in session:
         return redirect(url_for('signin'))
 
-    form = CreateMedicalAppointment()
     user = User.query.filter_by(email = session['email']).first()
     profile = Profile.query.filter_by(uid = user.uid).first()
-    form.updateHeaderData(profile)
+    print id
+    if id <> 0 :
+        re = records.query.filter_by(id = id).first()
+        ev = event.query.filter_by(id = re.idEvent).first()
+        form = CreateMedicalAppointment(obj=re)
+        form.heart.data = ev.idVSHeartbeat
+        form.temp.data = ev.idVSTemperature
+        form.date.data = ev.date
+        form.time.date = ev.time
+    else:
+        form = CreateMedicalAppointment()
 
-    if request.method == 'POST':
+    form.updateHeaderData(profile)
+    if (request.method == 'POST') and (id == 0) and (form.id.data == 0):
+        print "entrou 1"
         ev = event("", form.idRoom.data, form.temp.data, form.heart.data, user.uid, form.idPatient.data)
         db.session.add(ev)
         db.session.commit()
@@ -241,8 +280,13 @@ def createRecords():
         db.session.commit()
 
         return redirect(url_for('createRecords'))
-
+    elif request.method == "POST" and form.id.data <> 0:
+        print "entrou 2"
+        re.updateRecord(re.id, form.idRoom.data, user.uid, form.idPatient.data, form.idMedicament.data, form.description.data, form.dose.data, form.unitMeasure.data, re.idEvent)
+        db.session.commit()
+        return redirect(url_for('recordsList'))
     elif request.method == "GET":
+        print "entrou 3"
         if user is None:
             return redirect(url_for('signin'))
         else:
@@ -322,11 +366,9 @@ def calendario(id):
     for ev in e:
         eventslist.append(ev)
 
-    updateobj = eventslist
-    objectUpdate = json.dumps({'data': [o.serialize for o in updateobj]})
 
 
-    return render_template('calendario.html', ev=objectUpdate)
+    return render_template('calendario.html', eventslist=eventslist)
 
 @app.route('/signout')
 def signout():
