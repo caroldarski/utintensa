@@ -3307,12 +3307,32 @@ iframe{
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
+
+.doctors .itemA {
+  position: relative;
+  float: left;
+  width: 350px;
+  margin: 25px 0;
+  padding: 0 15px;
+  text-align: center;
+  -ms-box-sizing:border-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
 .doctors .item p{
   text-indent:0;
 }
 .doctors .item-fullwidth {
   width: 100% !important;
 }
+.doctors .itemA p{
+  text-indent:0;
+}
+.doctors .itemA-fullwidth {
+  width: 100% !important;
+}
+
 .doctors .pic {
   position: relative;
   padding-bottom: 100%;
@@ -3410,6 +3430,24 @@ iframe{
   -webkit-animation-name: slideup;
   -webkit-animation-duration: 0.4s;
 }
+
+.doctors .itemA:hover h3 a,
+.doctors .itemA:hover p {
+  color: #fff;
+}
+.doctors .itemA:hover .links {
+  opacity: 1;
+}
+.doctors .itemA:hover .links li {
+  opacity: 1;
+  -ms-animation-name: slideup;
+  -ms-animation-duration: 0.4s;
+  -moz-animation-name: slideup;
+  -moz-animation-duration: 0.4s;
+  -webkit-animation-name: slideup;
+  -webkit-animation-duration: 0.4s;
+}
+
 @media screen and (max-width: 1190px) { /* laptop */
   .doctors .filter {
     width: 220px;

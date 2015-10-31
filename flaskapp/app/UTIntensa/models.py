@@ -1,6 +1,6 @@
 from flask.ext.sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from sqlalchemy.ext.declarative import DeclarativeMeta
 import json
 
@@ -227,8 +227,6 @@ class records(db.Model):
 		self.unitMeasure = unitMea
 
 class dashboard(Profile):
-
-
 	def __init__(self, name, lastname, heartbeat, temperature, age, patientID):
 		self.name = name + " " + lastname
 		self.heartbeat = heartbeat
@@ -236,6 +234,7 @@ class dashboard(Profile):
 		self.age = self.calculate_age(age)
 		self.criticHeart = self.define_critic_heartbeat(heartbeat)
 		self.criticTemp = self.define_critic_temperature(temperature)
+		self.criticNoSensor = self.define_critic_no_sensor(patientID)
 		self.idPatient = patientID
 
 	@property
@@ -248,6 +247,7 @@ class dashboard(Profile):
 				'criticHeart': self.criticHeart,
 				'criticTemp': self.criticTemp,
 				'id' : self.idPatient,
+				'criticSensor': self.criticNoSensor,
 		}
 
 	def calculate_age(self, born):
@@ -259,6 +259,20 @@ class dashboard(Profile):
 			return True
 		else:
 			return False
+
+	def define_critic_no_sensor(self, iid):
+		lastheartBeat = Heartbeat.query.filter(Heartbeat.idPatient == iid, Heartbeat.vitalSign == "Heartbeat").order_by(VitalSign.dateConsulting.desc()).first()
+		total = datetime.now() - lastheartBeat.dateConsulting
+		if total > timedelta(seconds=15):
+			return True
+		else:
+			lastTemperature = Temperature.query.filter(Temperature.idPatient == iid, Temperature.vitalSign == "Temperature").order_by(VitalSign.dateConsulting.desc()).first()
+			total = lastTemperature.dateConsulting - datetime.now()
+
+			if total > timedelta(seconds=15):
+				return True
+			else:
+				return False
 
 	def define_critic_temperature(self, temperature):
 		if (temperature < 36) or (temperature > 37.5):

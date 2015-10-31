@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Clinico - Responsive Medical and Health Template</title>
-		
+		<title>UTIntensa</title>
+
 		<!-- metas -->
 		<meta charset="utf-8">
-		<meta name="author" content="http://themeforest.net/user/CreativeWS/portfolio">
+		<meta name="author" content="Carolina Darski">
 		<meta name="keywords" content="">
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 		<!--/ metas -->
-		
+
 		<!-- styles -->
-		<link rel="stylesheet" type="text/css" href="static/css/layerslider.css">
-		<link rel="stylesheet" type="text/css" href="static/css/fullwidth/skin.css">
-		<link rel="stylesheet" type="text/css" href="static/css/font-awesome.css">
-		<link rel="stylesheet" type="text/css" href="static/css/owl.carousel.css">
-		<link rel="stylesheet" type="text/css" href="static/css/jquery.fancybox.css">
-		<link rel="stylesheet" type="text/css" href="static/css/styles.css">
-		<link rel="stylesheet" type="text/css" href="static/css/color-blue.css">
-		
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layerslider.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fullwidth/skin.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/color-blue.css') }}">
+
 		<!--/ styles -->
-		
-		<!--[if lt IE 9]><script src="static/js/html5.js"></script><![endif]-->
+
+		<!--[if lt IE 9]><script src="{{ url_for('static', filename='js/html5.js') }}"></script><![endif]-->
 	</head>
-	
+
 	<body>
 		<div class="page">
 
@@ -35,7 +35,7 @@
 						<!-- logo -->
 						<section id="logo" class="logo">
 							<div>
-								<a href="index.html"><img src="static/img/blue/utintensa.png" alt="Clinico"></a>
+								<a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/blue/utintensa.png') }}" alt="UTIntensa"></a>
 							</div>
 						</section>
 						<!--/ logo -->
@@ -43,16 +43,29 @@
 						<!-- main nav -->
 						<nav class="main-nav">
 							<ul>
-								<li><a href="{{ url_for('home') }}">Inicio</a></li>
-								<li><a href="{{ url_for('about') }}">Sobre</a></li>
-								<li><a href="{{ url_for('contact') }}">Contato</a></li>
-								<li><a href="{{ url_for('dashboardMethod') }}">Dashboard</a></li>
+								<li><a href="{{ url_for('home') }}"><i class="fa fa-plus"></i>Inicio</a></li>
 								{% if 'email' in session %}
-								<li><a href="{{ url_for('profile') }}">Perfil</a></li>
-								<li><a href="{{ url_for('signout') }}">Sair</a></li>
+									<li><a href="{{ url_for('dashboardMethod') }}"><i class="fa fa-plus"></i>Painel de Alertas</a></li>
+									<li><a href="{{ url_for('recordsList') }}"><i class="fa fa-plus"></i>Visitas Médicas</a> </li>
+									<li>
+										<a href="#"><i class="fa fa-plus"></i>Cadastros</a>
+										<ul>
+											<li><a href="{{ url_for('createRecords') }}">Cadastro de Visita Médica Manual</a></li>
+											<li><a href="{{ url_for('createMedicament') }}">Cadastro de Medicamento</a></li>
+											<li><a href="{{ url_for('createMedicamentType') }}">Cadastro de Tipo de Medicamento</a></li>
+											<li><a href="{{ url_for('createPerson') }}">Cadastro de Pacientes</a></li>
+											<li><a href="{{ url_for('createPerson') }}">Cadastro de Funcionário</a></li>
+
+										</ul>
+									</li>
+
+								    <li><a href="{{ url_for('profile') }}"><i class="fa fa-plus"></i>Perfil</a></li>
+									<li><a href="{{ url_for('signout') }}"><i class="fa fa-plus"></i>Sair</a></li>
 								{% else %}
-								<li><a href="{{ url_for('signin') }}">Entrar</a></li>
+									<li><a href="{{ url_for('signin') }}"><i class="fa fa-plus"></i>Entrar</a></li>
 								{% endif %}
+								<li><a href="{{ url_for('about') }}"><i class="fa fa-plus"></i>Sobre</a></li>
+								<li><a href="{{ url_for('contact') }}"><i class="fa fa-plus"></i>Contato</a></li>
 							</ul>
 						</nav>
 						<!--/ main nav -->
@@ -61,16 +74,27 @@
 						<nav id="mobile-main-nav" class="mobile-main-nav">
 							<i class="fa fa-bars"></i><a href="#" class="opener">Navegação</a>
 							<ul>
-								<li><a href="{{ url_for('home') }}">Inicio</a></li>
-								<li><a href="{{ url_for('about') }}">Sobre</a></li>
-								<li><a href="{{ url_for('contact') }}">Contato</a></li>
-								<li><a href="{{ url_for('dashboardMethod') }}">Dashboard</a></li>
+								<li><a href="{{ url_for('home') }}"><i class="fa fa-plus"></i>Inicio</a></li>
 								{% if 'email' in session %}
-								<li><a href="{{ url_for('profile') }}">Perfil</a></li>
-								<li><a href="{{ url_for('signout') }}">Sair</a></li>
+									<li><a href="{{ url_for('dashboardMethod') }}"><i class="fa fa-plus"></i>Painel de Alertas</a></li>
+									<li><a href="{{ url_for('recordsList') }}"><i class="fa fa-plus"></i>Visitas Médicas</a> </li>
+									<li>
+										<a href="#"><i class="fa fa-plus"></i>Cadastros</a>
+										<ul>
+											<li><a href="{{ url_for('createRecords') }}">Cadastro de Visita Médica Manual</a></li>
+											<li><a href="{{ url_for('createMedicament') }}">Cadastro de Medicamento</a></li>
+											<li><a href="{{ url_for('createMedicamentType') }}">Cadastro de Tipo de Medicamento</a></li>
+											<li><a href="{{ url_for('createPerson') }}">Cadastro de Pacientes</a></li>
+											<li><a href="{{ url_for('createPerson') }}">Cadastro de Funcionário</a></li>
+										</ul>
+									</li>
+								    <li><a href="{{ url_for('profile') }}"><i class="fa fa-plus"></i>Perfil</a></li>
+									<li><a href="{{ url_for('signout') }}"><i class="fa fa-plus"></i>Sair</a></li>
 								{% else %}
-								<li><a href="{{ url_for('signin') }}">Entrar</a></li>
+									<li><a href="{{ url_for('signin') }}"><i class="fa fa-plus"></i>Entrar</a></li>
 								{% endif %}
+								<li><a href="{{ url_for('about') }}"><i class="fa fa-plus"></i>Sobre</a></li>
+								<li><a href="{{ url_for('contact') }}"><i class="fa fa-plus"></i>Contato</a></li>
 							</ul>
 						</nav>
 						<!--/ mobile nav -->
@@ -78,6 +102,7 @@
 				</div>
 			</header>
 			<!--/ page header -->
+
 
 			<!-- page title -->
 			<section class="page-title">
@@ -126,16 +151,17 @@
 			</main>
 			<!-- page content -->
 
+
 			<!-- page footer -->
 			<footer class="page-footer">
 				<a href="#" id="top-link" class="top-link"><i class="fa fa-angle-double-up"></i></a>
-				
+
 				<div class="grid-row">
 					<div class="grid-col grid-col-3">
 						<!-- last news -->
 						<section class="widget-alt last-news">
 							<div class="widget-icon"></div>
-							<div class="widget-title">Clinico</div>
+							<div class="widget-title">UTIntensa</div>
 							<ul>
 								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin justo non odio molestie, sed venenatis elit, consectetur adipiscing.</li>
 								<li>Donec quis condimentum leo, et congue dolor. Integer auctor facilisis odio. Duis vitae nibh tristique, consectetur lacus a, facilisis rutrum enim.</li>
@@ -144,17 +170,17 @@
 						</section>
 						<!--/ last news -->
 					</div>
-					
+
 					<div class="grid-col grid-col-3">
 						<!-- location -->
 						<section class="widget-alt location">
 							<div class="widget-icon"></div>
-							<div class="widget-title">Location</div>
-							<address>Address will be appear here, some details here City Name, Country.</address>
+							<div class="widget-title">Localização</div>
+							<address>Av. Unisinos, 123 CEP 92022-718</address>
 							<ul>
-								<li><i class="fa fa-phone"></i>(907) 555-55555</li>
-								<li><i class="fa fa-at">@</i>company@youremail.com</li>
-								<li><i class="fa fa-skype"></i>Medical Skype Name</li>
+								<li><i class="fa fa-phone"></i>(51) 8522-6685</li>
+								<li><i class="fa fa-at">@</i>atendimento@utintesa.com.br</li>
+								<li><i class="fa fa-skype"></i>UTIntensa</li>
 							</ul>
 							<nav>
 								<a href="#" class="fa fa-twitter"></a>
@@ -162,99 +188,86 @@
 								<a href="#" class="fa fa-instagram"></a>
 							</nav>
 						</section>
-						<!--/ location -->	
+						<!--/ location -->
 					</div>
-					
 					<div class="grid-col grid-col-3">
 						<!-- last news -->
 						<section class="widget-alt recent-posts">
 							<div class="widget-icon"></div>
-							<div class="widget-title">Recent Posts</div>
+							<div class="widget-title">Especialidades</div>
 							<ul>
-								<li>
-									<a href="#"><img src="pic/post/1.png" width="80" height="80" alt=""></a>
-									<p><a href="#">New study links lutein with eye health benefits, consectetur adipiscing</a><br>5 months ago</p>
-								</li>
-								<li>
-									<a href="#"><img src="pic/post/2.png" width="80" height="80" alt=""></a>
-									<p><a href="#">Pets may reduce risk of heart disease, et congue dolor heart</a><br>8 months ago</p>
-								</li>
-								<li>
-									<a href="#"><img src="pic/post/3.png" width="80" height="80" alt=""></a>
-									<p><a href="#">Discoveries offer a new explanation for diabetes, consectetur</a><br>10 months ago</p>
-								</li>
+								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin justo non odio molestie, sed venenatis elit, consectetur adipiscing.</li>
+								<li>Donec quis condimentum leo, et congue dolor. Integer auctor facilisis odio. Duis vitae nibh tristique, consectetur lacus a, facilisis rutrum enim.</li>
+								<li>Cras fermentum interdum dapibus. Maecenas imperdiet, consectetur adipiscing magna nec odio cursus, vitae consequat ante.</li>
 							</ul>
 						</section>
-						<!--/ last news -->						
+						<!--/ last news -->
 					</div>
-					
 					<div class="grid-col grid-col-3">
 						<!-- work time -->
 						<section class="widget-alt work-time">
 							<div class="widget-icon"></div>
 							<dl>
-								<dt>Mon</dt>
-								<dd>08:00 am - 12:00 pm</dd>
-								<dt>Tue</dt>
-								<dd>01:00 am - 05:00 pm</dd>
-								<dt>Wed</dt>
-								<dd>Free day</dd>
-								<dt>Thu</dt>
-								<dd>08:00 am - 12:00 pm</dd>
-								<dt>Fri</dt>
-								<dd>08:00 am - 12:00 pm</dd>
-								<dt>Sat</dt>
-								<dd>08:00 am - 12:00 pm</dd>
-								<dt>Sun</dt>
-								<dd>Free day</dd>
+								<dt>Seg</dt>
+								<dd>08:00 - 9:00</dd>
+								<dt>Ter</dt>
+								<dd>10:00 - 11:00</dd>
+								<dt>Qua</dt>
+								<dd>13:00 - 14:00</dd>
+								<dt>Qui</dt>
+								<dd>14:00 - 15:00</dd>
+								<dt>Sexta</dt>
+								<dd>18:00 - 19:00</dd>
+								<dt>Sáb</dt>
+								<dd>14:00 - 15:00</dd>
+								<dt>Dom</dt>
+								<dd>14:00 - 16:00</dd>
 							</dl>
-							<a href="#" class="button">Make an Appointment</a>
+							<a href="#" class="button">Marque sua visita</a>
 						</section>
-						<!--/ work time -->							
+						<!--/ work time -->
 					</div>
+
 				</div>
 			</footer>
 			<!--/ page footer -->
-			
-			<!-- copyrights -->
-			<div class="copyrights">Copyrights ©2014: Clinico - Responsive Medical and Health Template</div>
-			<!--/ copyrights -->
 
 		</div>
-		
-		<!-- scripts -->
-		<script type="text/javascript" src="static/js/jquery.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.migrate.min.js"></script>
-		<script type="text/javascript" src="static/js/owl.carousel.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.isotope.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.fancybox.pack.js"></script>
-		<script type="text/javascript" src="static/js/jquery.fancybox-media.js"></script>
-		<script type="text/javascript" src="static/js/jquery.flot.js"></script>
-		<script type="text/javascript" src="static/js/jquery.flot.pie.js"></script>
-		<script type="text/javascript" src="static/js/jquery.flot.categories.js"></script>
-		<script type="text/javascript" src="static/js/greensock.js"></script>
-		<script type="text/javascript" src="static/js/layerslider.transitions.js"></script>
-		<script type="text/javascript" src="static/js/layerslider.kreaturamedia.jquery.js"></script>
 
-	<!-- Superscrollorama -->		
-		<script type="text/javascript" src="static/js/jquery.superscrollorama.js"></script>
-		<script type="text/javascript" src="static/js/TweenMax.min.js"></script>
-		<script type="text/javascript" src="static/js/TimelineMax.min.js"></script>
+		<!-- scripts -->
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.migrate.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.isotope.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fancybox.pack.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fancybox-media.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.flot.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.flot.pie.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.flot.categories.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/greensock.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/layerslider.transitions.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/layerslider.kreaturamedia.jquery.js') }}"></script>
+
+	<!-- Superscrollorama -->
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.superscrollorama.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/TweenMax.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/TimelineMax.min.js') }}"></script>
 	<!--/ Superscrollorama -->
-	
-		<script type="text/javascript" src="static/js/jquery.ui.core.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.ui.widget.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.ui.tabs.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery-ui-tabs-rotate.js"></script>
-		<script type="text/javascript" src="static/js/jquery.ui.accordion.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.tweet.js"></script>
+
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.core.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.widget.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.tabs.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui-tabs-rotate.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.accordion.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.tweet.js') }}"></script>
 	<!-- EASYPIECHART -->
-		<script type="text/javascript" src="static/js/jquery.easypiechart.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easypiechart.js') }}"></script>
 	<!--/ EASYPIECHART -->
-		<script type="text/javascript" src="static/js/jquery.autocomplete.min.js"></script>
-		<script type="text/javascript" src="static/js/scripts.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.autocomplete.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 		<!--/ scripts -->
+
 		
 	</body>
 </html>

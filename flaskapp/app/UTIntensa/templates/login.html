@@ -5,26 +5,26 @@
 		
 		<!-- metas -->
 		<meta charset="utf-8">
-		<meta name="author" content="http://themeforest.net/user/CreativeWS/portfolio">
+		<meta name="author" content="Carolina Darski">
 		<meta name="keywords" content="">
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 		<!--/ metas -->
-		
+
 		<!-- styles -->
-		<link rel="stylesheet" type="text/css" href="static/css/layerslider.css">
-		<link rel="stylesheet" type="text/css" href="static/css/fullwidth/skin.css">
-		<link rel="stylesheet" type="text/css" href="static/css/font-awesome.css">
-		<link rel="stylesheet" type="text/css" href="static/css/owl.carousel.css">
-		<link rel="stylesheet" type="text/css" href="static/css/jquery.fancybox.css">
-		<link rel="stylesheet" type="text/css" href="static/css/styles.css">
-		<link rel="stylesheet" type="text/css" href="static/css/color-blue.css">
-		
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layerslider.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fullwidth/skin.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery.fancybox.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/color-blue.css') }}">
+
 		<!--/ styles -->
-		
-		<!--[if lt IE 9]><script src="static/js/html5.js"></script><![endif]-->
+
+		<!--[if lt IE 9]><script src="{{ url_for('static', filename='js/html5.js') }}"></script><![endif]-->
 	</head>
-	
+
 	<body>
 		<div class="page">
 
@@ -35,40 +35,65 @@
 						<!-- logo -->
 						<section id="logo" class="logo">
 							<div>
-								<a href="index.html"><img src="static/img/blue/utintensa.png" alt="Clinico"></a>
+								<a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/blue/utintensa.png') }}" alt="UTIntensa"></a>
 							</div>
 						</section>
 						<!--/ logo -->
-						
+
 						<!-- main nav -->
 						<nav class="main-nav">
 							<ul>
-								<li><a href="{{ url_for('home') }}">Home</a></li>
-								<li><a href="{{ url_for('about') }}">About</a></li>
-								<li><a href="{{ url_for('contact') }}">Contact</a></li>
+								<li><a href="{{ url_for('home') }}"><i class="fa fa-plus"></i>Inicio</a></li>
 								{% if 'email' in session %}
-								<li><a href="{{ url_for('profile') }}">Profile</a></li>
-								<li><a href="{{ url_for('signout') }}">Sign Out</a></li>
+									<li><a href="{{ url_for('dashboardMethod') }}"><i class="fa fa-plus"></i>Painel de Alertas</a></li>
+									<li><a href="{{ url_for('recordsList') }}"><i class="fa fa-plus"></i>Visitas Médicas</a> </li>
+									<li>
+										<a href="#"><i class="fa fa-plus"></i>Cadastros</a>
+										<ul>
+											<li><a href="{{ url_for('createRecords') }}">Cadastro de Visita Médica Manual</a></li>
+											<li><a href="{{ url_for('createMedicament') }}">Cadastro de Medicamento</a></li>
+											<li><a href="{{ url_for('createMedicamentType') }}">Cadastro de Tipo de Medicamento</a></li>
+											<li><a href="{{ url_for('createPerson') }}">Cadastro de Pacientes</a></li>
+											<li><a href="{{ url_for('createPerson') }}">Cadastro de Funcionário</a></li>
+										</ul>
+									</li>
+
+								    <li><a href="{{ url_for('profile') }}"><i class="fa fa-plus"></i>Perfil</a></li>
+									<li><a href="{{ url_for('signout') }}"><i class="fa fa-plus"></i>Sair</a></li>
 								{% else %}
-								<li><a href="{{ url_for('signin') }}">Sign In</a></li>
+									<li><a href="{{ url_for('signin') }}"><i class="fa fa-plus"></i>Entrar</a></li>
 								{% endif %}
+								<li><a href="{{ url_for('about') }}"><i class="fa fa-plus"></i>Sobre</a></li>
+								<li><a href="{{ url_for('contact') }}"><i class="fa fa-plus"></i>Contato</a></li>
 							</ul>
 						</nav>
 						<!--/ main nav -->
-						
+
 						<!-- mobile nav -->
 						<nav id="mobile-main-nav" class="mobile-main-nav">
-							<i class="fa fa-bars"></i><a href="#" class="opener">Navigation</a>
+							<i class="fa fa-bars"></i><a href="#" class="opener">Navegação</a>
 							<ul>
-							<li><a href="{{ url_for('home') }}">Home</a></li>
-								<li><a href="{{ url_for('about') }}">About</a></li>
-								<li><a href="{{ url_for('contact') }}">Contact</a></li>
+								<li><a href="{{ url_for('home') }}"><i class="fa fa-plus"></i>Inicio</a></li>
 								{% if 'email' in session %}
-								<li><a href="{{ url_for('profile') }}">Profile</a></li>
-								<li><a href="{{ url_for('signout') }}">Sign Out</a></li>
+									<li><a href="{{ url_for('dashboardMethod') }}"><i class="fa fa-plus"></i>Painel de Alertas</a></li>
+									<li><a href="{{ url_for('recordsList') }}"><i class="fa fa-plus"></i>Visitas Médicas</a> </li>
+									<li>
+										<a href="#"><i class="fa fa-plus"></i>Cadastros</a>
+										<ul>
+											<li><a href="{{ url_for('createRecords') }}">Cadastro de Visita Médica Manual</a></li>
+											<li><a href="{{ url_for('createMedicament') }}">Cadastro de Medicamento</a></li>
+											<li><a href="{{ url_for('createMedicamentType') }}">Cadastro de Tipo de Medicamento</a></li>
+											<li><a href="{{ url_for('createPerson') }}">Cadastro de Pacientes</a></li>
+											<li><a href="{{ url_for('createPerson') }}">Cadastro de Funcionário</a></li>
+										</ul>
+									</li>
+								    <li><a href="{{ url_for('profile') }}"><i class="fa fa-plus"></i>Perfil</a></li>
+									<li><a href="{{ url_for('signout') }}"><i class="fa fa-plus"></i>Sair</a></li>
 								{% else %}
-								<li><a href="{{ url_for('signin') }}">Sign In</a></li>
+									<li><a href="{{ url_for('signin') }}"><i class="fa fa-plus"></i>Entrar</a></li>
 								{% endif %}
+								<li><a href="{{ url_for('about') }}"><i class="fa fa-plus"></i>Sobre</a></li>
+								<li><a href="{{ url_for('contact') }}"><i class="fa fa-plus"></i>Contato</a></li>
 							</ul>
 						</nav>
 						<!--/ mobile nav -->
@@ -115,10 +140,11 @@
 			</main>
 			<!--/ page content -->
 
+
 			<!-- page footer -->
 			<footer class="page-footer">
 				<a href="#" id="top-link" class="top-link"><i class="fa fa-angle-double-up"></i></a>
-				
+
 				<div class="grid-row">
 					<div class="grid-col grid-col-3">
 						<!-- last news -->
@@ -133,7 +159,7 @@
 						</section>
 						<!--/ last news -->
 					</div>
-				
+
 					<div class="grid-col grid-col-3">
 						<!-- location -->
 						<section class="widget-alt location">
@@ -151,7 +177,7 @@
 								<a href="#" class="fa fa-instagram"></a>
 							</nav>
 						</section>
-						<!--/ location -->	
+						<!--/ location -->
 					</div>
 					<div class="grid-col grid-col-3">
 						<!-- last news -->
@@ -165,7 +191,7 @@
 							</ul>
 						</section>
 						<!--/ last news -->
-					</div>	
+					</div>
 					<div class="grid-col grid-col-3">
 						<!-- work time -->
 						<section class="widget-alt work-time">
@@ -188,48 +214,48 @@
 							</dl>
 							<a href="#" class="button">Marque sua visita</a>
 						</section>
-						<!--/ work time -->							
+						<!--/ work time -->
 					</div>
-					
+
 				</div>
 			</footer>
 			<!--/ page footer -->
-			
-		</div>
-		
-		<!-- scripts -->
-		<script type="text/javascript" src="static/js/jquery.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.migrate.min.js"></script>
-		<script type="text/javascript" src="static/js/owl.carousel.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.isotope.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.fancybox.pack.js"></script>
-		<script type="text/javascript" src="static/js/jquery.fancybox-media.js"></script>
-		<script type="text/javascript" src="static/js/jquery.flot.js"></script>
-		<script type="text/javascript" src="static/js/jquery.flot.pie.js"></script>
-		<script type="text/javascript" src="static/js/jquery.flot.categories.js"></script>
-		<script type="text/javascript" src="static/js/greensock.js"></script>
-		<script type="text/javascript" src="static/js/layerslider.transitions.js"></script>
-		<script type="text/javascript" src="static/js/layerslider.kreaturamedia.jquery.js"></script>
 
-	<!-- Superscrollorama -->		
-		<script type="text/javascript" src="static/js/jquery.superscrollorama.js"></script>
-		<script type="text/javascript" src="static/js/TweenMax.min.js"></script>
-		<script type="text/javascript" src="static/js/TimelineMax.min.js"></script>
+		</div>
+
+		<!-- scripts -->
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.migrate.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.isotope.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fancybox.pack.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fancybox-media.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.flot.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.flot.pie.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.flot.categories.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/greensock.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/layerslider.transitions.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/layerslider.kreaturamedia.jquery.js') }}"></script>
+
+	<!-- Superscrollorama -->
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.superscrollorama.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/TweenMax.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/TimelineMax.min.js') }}"></script>
 	<!--/ Superscrollorama -->
-	
-		<script type="text/javascript" src="static/js/jquery.ui.core.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.ui.widget.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.ui.tabs.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery-ui-tabs-rotate.js"></script>
-		<script type="text/javascript" src="static/js/jquery.ui.accordion.min.js"></script>
-		<script type="text/javascript" src="static/js/jquery.tweet.js"></script>
+
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.core.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.widget.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.tabs.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui-tabs-rotate.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ui.accordion.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.tweet.js') }}"></script>
 	<!-- EASYPIECHART -->
-		<script type="text/javascript" src="static/js/jquery.easypiechart.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easypiechart.js') }}"></script>
 	<!--/ EASYPIECHART -->
-		<script type="text/javascript" src="static/js/jquery.autocomplete.min.js"></script>
-		<script type="text/javascript" src="static/js/scripts.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.autocomplete.min.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 		<!--/ scripts -->
-		
+
 	</body>
 </html>

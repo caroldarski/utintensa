@@ -4,6 +4,7 @@ from forms import ContactForm, SigninForm, ProfileForm, CreatePersonForm, Create
 from flask.ext.mail import Message, Mail
 from models import db, User, Profile, Temperature, Heartbeat, event, dashboard, medicamentType, medicament, records, room
 import json
+import operator
 
 mail = Mail()
 idDash = 0;
@@ -18,7 +19,7 @@ def testdb():
 @app.route('/')
 def home():
     return redirect(url_for('profile'))
-  
+
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -26,7 +27,7 @@ def about():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     form = ContactForm()
- 
+
     if request.method == 'POST':
         if form.validate() == False:
             flash('All fields are required.')
@@ -157,7 +158,8 @@ def dashboardUpdate():
         p = dashboard(p.firstname, p.lastname, heart.value, temp.value, p.birthdate, p.uid)
         dashboardlist.append(p)
 
-    updateobj = dashboardlist
+
+    updateobj = sorted(dashboardlist, key=operator.attrgetter('criticNoSensor'), reverse=True)
     objectUpdate = json.dumps({'data': [o.serialize for o in updateobj]})
     return objectUpdate
 
@@ -258,7 +260,7 @@ def createRecords(id):
     user = User.query.filter_by(email = session['email']).first()
     profile = Profile.query.filter_by(uid = user.uid).first()
     print id
-    if id <> 0 :
+    if id <> 0:
         re = records.query.filter_by(id = id).first()
         ev = event.query.filter_by(id = re.idEvent).first()
         form = CreateMedicalAppointment(obj=re)
@@ -270,7 +272,8 @@ def createRecords(id):
         form = CreateMedicalAppointment()
 
     form.updateHeaderData(profile)
-    if (request.method == 'POST') and (id == 0) and (form.id.data == 0):
+    print ('DADOS' + str(form.id.data) + "" + str(id))
+    if (request.method == 'POST') and (id == 0) and ((form.id.data == 0) or (form.id.data == "")):
         print "entrou 1"
         ev = event("", form.idRoom.data, form.temp.data, form.heart.data, user.uid, form.idPatient.data)
         db.session.add(ev)
@@ -279,10 +282,10 @@ def createRecords(id):
         db.session.add(record)
         db.session.commit()
 
-        return redirect(url_for('createRecords'))
+        return redirect(url_for('recordsList'))
     elif request.method == "POST" and form.id.data <> 0:
         print "entrou 2"
-        re.updateRecord(re.id, form.idRoom.data, user.uid, form.idPatient.data, form.idMedicament.data, form.description.data, form.dose.data, form.unitMeasure.data, re.idEvent)
+        re.updateRecord(id, form.idRoom.data, user.uid, form.idPatient.data, form.idMedicament.data, form.description.data, form.dose.data, form.unitMeasure.data, re.idEvent)
         db.session.commit()
         return redirect(url_for('recordsList'))
     elif request.method == "GET":
