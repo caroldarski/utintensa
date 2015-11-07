@@ -13,7 +13,7 @@ class ContactForm(Form):
 class SigninForm(Form):
 	email = TextField("Email",  validators=[DataRequired("Please enter your email address.")])
 	password = PasswordField('Password', validators=[DataRequired("Please enter a password.")])
-	submit = SubmitField("Sign In")
+	submit = SubmitField("Entrar")
    
 	def __init__(self, *args, **kwargs):
 		Form.__init__(self, *args, **kwargs)
@@ -139,7 +139,21 @@ class CreateMedicalAppointment(Form):
 
 	def updateHeaderData(self, p):
 		print p.lastname
-		self.idUser.label = "Atendido por: ", p.firstname, " ", p.lastname
+		self.idUser.label = "Atendido por: " +  p.firstname + " " + p.lastname
+		if self.id.data <> None:
+			self.heart.label = "Frequencia de batimento cardiaco: " + str(self.heart.data) +"(b/m)"
+			self.temp.label = "Temperatura: " + str(self.temp.data)
+			self.date.label = "Data de Atendimento: " + str(self.date.data) + " " + str(self.time.data)
+			if ( self.idPatient.data == '5' ):
+				self.idPatient.label = "Paciente: Alice Maravilha"
+			else:
+				self.idPatient.label = "Paciente: Joao Oliveira"
+		else:
+			self.heart.label = "Frequencia de batimento cardiaco(b/m)"
+			self.temp.label = "Temperatura"
+			self.date.label = "Data"
+			self.idPatient.label = "Paciente"
+
 
 class CreateMedicamentType(Form):
 	name = TextField("Nome")

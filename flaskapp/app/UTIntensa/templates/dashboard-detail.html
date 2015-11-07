@@ -119,24 +119,19 @@
 			<main class="page-content">
 				<div class="grid-row">
 					
-					<div class="grid-col grid-col-9">
-						<div class="grid-col grid-col-3">
+					<div class="grid-col grid-col-5">
+						<div class="grid-col grid-col-2">
 							<img src="{{ url_for('static', filename='pictures/ana-profile.png') }}" alt={{ patient.firstname }}></img>
 						</div>
-						
-						<div class="grid-col grid-col-6">
-							</br>
-							</br>
+						<div class="grid-col grid-col-4">
 							<div class="widget-title-baby">Idade: {{ dash.age }} anos</div>
-							<div class="widget-title-baby">Setor: {{ room.building }} {{ room.floor}} {{ room.corridor }} {{ room.room }}</div>
+							<div class="widget-title-baby">Setor: {{ r.building }} {{ r.floor}} {{ r.corridor }} {{ r.room }}</div>
 							{% if dash.criticTemp or dash.criticHeart %}
-								<div class="widget-title-baby">Estado:<a class="widget-title-baby-estavel"> Instável</class></div>
+								<div class="widget-title-baby">Estado:<a class="widget-title-baby-instavel"> Instável</class></div>
 							{% else %}
 								<div class="widget-title-baby">Estado:<a class="widget-title-baby-estavel"> Estável</class></div>
 							{% endif %}
 						</div>
-						
-						</br>
 						
 						<!-- chart graph -->
 						<div class="wpb_row vc_row-fluid">

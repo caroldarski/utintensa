@@ -277,12 +277,18 @@
 					var cModified = '';
 					json = JSON.parse(response);
 					$(json.data).each(function(index){
-						if (this.criticSensor){
+						if (this.criticSensor || this.criticHeart || this.criticTemp){
 							contentModified = contentModified + '<a href="' + '{{ url_for("dashboardDetail", id=999999) }}' + '">' +
 													'<div class="itemA item1">' +
-													'<h2> ' + this.name + '</h2>' +
-													'<h2> ATENÇÃO! SENSORES COM PROBLEMAS! </h2>' +
-													'<h3><a class="fa fa-heart"> ' + this.heartbeat + ' b/m </a></h3>' +
+													'<h2> ' + this.name + '</h2>';
+							if (this.criticSensor) {
+								contentModified = contentModified + '<h2> ATENÇÃO! SENSORES COM PROBLEMAS! </h2>';
+							}
+							else{
+								contentModified = contentModified + '<br>';
+
+							}
+							contentModified = contentModified + '<h3><a class="fa fa-heart"> ' + this.heartbeat + ' b/m </a></h3>' +
 													'<h3><a class="fa fa-plus"> ' + this.temperature + '</a></h3>' +
 													'<p>' + this.age + ' anos </p>' +
 												'</div> </a>';

@@ -161,6 +161,15 @@ class event(db.Model):
 				'idVSHeartbeat' : self.idVSHeartbeat,
 		}
 
+	def updateRecord(self, id, date, idVSHeartbeat, idVSTemperature, time, idRoom, idPatient, userId):
+		self.id = id
+		self.idRoom = idRoom
+		self.date = date
+		self.idUser = userId
+		self.idPatient = idPatient
+		self.idVSTemperature = idVSTemperature
+		self.idVSHeartbeat = idVSHeartbeat
+		self.time = time
 
 	def __init__(self, description, idRoom, idVSTemp, idVSHeart, idPatient, idUser):
 		self.description = description

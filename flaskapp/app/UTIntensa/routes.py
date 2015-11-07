@@ -158,9 +158,9 @@ def dashboardUpdate():
         p = dashboard(p.firstname, p.lastname, heart.value, temp.value, p.birthdate, p.uid)
         dashboardlist.append(p)
 
-
-    updateobj = sorted(dashboardlist, key=operator.attrgetter('criticNoSensor'), reverse=True)
-    objectUpdate = json.dumps({'data': [o.serialize for o in updateobj]})
+    updateobj = sorted(dashboardlist, key=operator.attrgetter('criticHeart'), reverse=True)
+    lastupdateobj = sorted(updateobj, key=operator.attrgetter('criticNoSensor'), reverse=True)
+    objectUpdate = json.dumps({'data': [o.serialize for o in lastupdateobj]})
     return objectUpdate
 
 @app.errorhandler(404)
@@ -259,7 +259,6 @@ def createRecords(id):
 
     user = User.query.filter_by(email = session['email']).first()
     profile = Profile.query.filter_by(uid = user.uid).first()
-    print id
     if id <> 0:
         re = records.query.filter_by(id = id).first()
         ev = event.query.filter_by(id = re.idEvent).first()
@@ -267,14 +266,13 @@ def createRecords(id):
         form.heart.data = ev.idVSHeartbeat
         form.temp.data = ev.idVSTemperature
         form.date.data = ev.date
-        form.time.date = ev.time
+        form.time.data = ev.time
     else:
         form = CreateMedicalAppointment()
 
     form.updateHeaderData(profile)
     print ('DADOS' + str(form.id.data) + "" + str(id))
     if (request.method == 'POST') and (id == 0) and ((form.id.data == 0) or (form.id.data == "")):
-        print "entrou 1"
         ev = event("", form.idRoom.data, form.temp.data, form.heart.data, user.uid, form.idPatient.data)
         db.session.add(ev)
         db.session.commit()
@@ -284,12 +282,12 @@ def createRecords(id):
 
         return redirect(url_for('recordsList'))
     elif request.method == "POST" and form.id.data <> 0:
-        print "entrou 2"
+        ev.updateRecord(ev.id, ev.date, ev.idVSHeartbeat, ev.idVSTemperature, ev.time, form.idRoom.data, form.idPatient.data ,user.uid)
+        db.session.commit()
         re.updateRecord(id, form.idRoom.data, user.uid, form.idPatient.data, form.idMedicament.data, form.description.data, form.dose.data, form.unitMeasure.data, re.idEvent)
         db.session.commit()
         return redirect(url_for('recordsList'))
     elif request.method == "GET":
-        print "entrou 3"
         if user is None:
             return redirect(url_for('signin'))
         else:
@@ -338,10 +336,11 @@ def dashboardDetail(id):
     temp = Temperature.query.filter(Temperature.idPatient == patient.uid, Temperature.vitalSign == "Temperature").order_by(Temperature.dateConsulting.desc()).first()
     heart = Heartbeat.query.filter(Heartbeat.idPatient == patient.uid, Heartbeat.vitalSign == "Heartbeat").order_by(Heartbeat.dateConsulting.desc()).first()
     e = event.query.filter_by(idPatient = id).order_by(event.date.desc(), event.time.desc()).first()
+    print "room" + str(e.id)
     r = room.query.filter_by(id = e.idRoom).first()
     dash = dashboard(patient.firstname, patient.lastname, heart.value, temp.value, patient.birthdate, patient.uid);
 
-    return render_template('dashboard-detail.html', patient=patient, dash=dash, room=r)
+    return render_template('dashboard-detail.html', patient=patient, dash=dash, r=r)
 
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():

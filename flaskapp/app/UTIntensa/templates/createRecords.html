@@ -107,7 +107,7 @@
 			<!-- page title -->
 			<section class="page-title">
 				<div class="grid-row clearfix">
-					<h1>Perfil</h1>
+					<h1>Visita Médica</h1>
 					
 					<nav class="bread-crumbs">
 						<a href="index.html">Início</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;
@@ -125,34 +125,47 @@
 							<div class="widget-title">Cadastro de Registros Médicos</div>
 							<div class="wpb_text_column wpb_content_element">
 								<div class="wpb_wrapper">
-									<h2>Login</h2>
 
 									<form class="text" action="{{ url_for('createRecords', id=form.id.data) }}" method=post>
 
 										{{ form.hidden_tag() }}
-										{{ form.idUser.label }}
+										<h1>{{ form.idUser.label }}</h1>
 
-										{{ form.idPatient.label }}
-										{{ form.idPatient }}
+										{% if form.id.data != None %}
+											<h1>{{ form.idPatient.label }}</h1>
 
-										{{ form.date.label}}
-										{{ form.date }}
+											{{ form.heart.label }}
+											<br>
+											{{ form.temp.label }} graus
+											<br>
+											{{ form.date.label }}
+											<br>
+											<br>
+										{% endif %}
 
-										{{ form.time.label }}
-										{{ form.time }}
-										 
-										{{ form.type.label }}
-										{{ form.type }}
+										{% if form.id.data == None %}
+											{{ form.idPatient.label }}
+										    {{ form.idPatient }}
+
+											{{ form.heart.label }}
+											{{ form.heart }}
+
+											{{ form.temp.label }}
+											{{ form.temp }}
+
+											{{ form.date.label}}
+											{{ form.date }}
+
+											{{ form.time.label }}
+											{{ form.time }}
+										{% endif %}
 
 										{{ form.idRoom.label }}
 										{{ form.idRoom }}
 
-										{{ form.heart.label }}
-										{{ form.heart }}
+										{{ form.type.label }}
+										{{ form.type }}
 
-
-										{{ form.temp.label }}
-										{{ form.temp }}
 
 										{{ form.description.label }}
 										{{ form.description }}
