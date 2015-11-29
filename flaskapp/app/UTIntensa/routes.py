@@ -73,7 +73,7 @@ def profile():
 
 @app.route('/Sendheartbeat', methods=['POST'])
 def Sendheartbeat():
-		print "passou"
+    print "passou"
     vheartbeat = request.json.get('heartbeat')
     iid = request.json.get('id')
     if vheartbeat is None or iid is None:
