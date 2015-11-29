@@ -76,10 +76,12 @@ def Sendheartbeat():
     print "passou"
     vheartbeat = request.json.get('heartbeat')
     iid = request.json.get('id')
+    print "passou2"
     if vheartbeat is None or iid is None:
         abort(400)
     else:
         heartbeatOBJ = Heartbeat(iid, vheartbeat)
+        print "entrounoelse" 
         db.session.add(heartbeatOBJ)
         db.session.commit()
     return jsonify({'id' : iid, 'heartbeat' : vheartbeat})
