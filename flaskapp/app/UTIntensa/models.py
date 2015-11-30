@@ -264,7 +264,7 @@ class dashboard(Profile):
 		return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 	def define_critic_heartbeat(self, heartbeat):
-		if (heartbeat < 60) or (heartbeat > 100):
+		if (heartbeat < 80) or (heartbeat > 160):
 			return True
 		else:
 			return False
